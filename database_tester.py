@@ -8,7 +8,7 @@ import init_db as idb
 from playermodels import Player
 from questionmodels import Question, Answer
 
-class DatabaseUser() :
+class DatabaseTester() :
 
     def __init__(self) :
         self.engine = idb.get_engine()
@@ -74,7 +74,7 @@ class DatabaseUser() :
             session.commit()
 
 if __name__ == "__main__" :
-    user = DatabaseUser()
+    user = DatabaseTester()
     user.create_player("Nicolas")
     user.create_player("Victor")
     user.create_player("Raouff")
