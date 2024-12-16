@@ -1,6 +1,6 @@
 import sqlmodel as sm
 from sqlalchemy import Engine
-from filenames_enum import Filenames
+from enums import Filenames
 
 def get_engine() -> Engine:
     sqlitefile_name = Filenames.SQLITE_DB.value
