@@ -1,4 +1,4 @@
-from enums import Filenames
+from enums import Filenames, Themes
 import sqlmodel as sm
 from sqlalchemy import Engine
 import os
@@ -64,12 +64,12 @@ class DatabaseTester() :
                 name=name,
                 num_of_questions_with_bad_answer=0,
                 num_of_questions_with_correct_answer=0,
-                camenbert_BASES_DE_DONNEES=False,
-                camenbert_LANGAGES_DE_PROGRAMMATION=False,
-                camenbert_LIGNE_DE_COMMANDES=False,
-                camenbert_ACTUALITES_IA=False,
-                camenbert_DEVOPS=False,
-                camenbert_TECH_IA=False)
+                camembert_BASES_DE_DONNEES=False,
+                camembert_LANGAGES_DE_PROGRAMMATION=False,
+                camembert_LIGNE_DE_COMMANDES=False,
+                camembert_ACTUALITES_IA=False,
+                camembert_DEVOPS=False,
+                camembert_TECH_IA=False)
             session.add(new_player)
             session.commit()
 
@@ -85,6 +85,16 @@ if __name__ == "__main__" :
     user.create_answer(id_question, "Oracle", False)
     user.create_answer(id_question, "Mongo DB", False)
     user.create_answer(id_question, "Turtle DB", True)
+
+    print(f"{Themes.BASES_DE_DONNEES} ={Themes.BASES_DE_DONNEES.value}")
+    print(f"{Themes.TECH_IA} ={Themes.TECH_IA.value}")
+
+
+    question = user.get_question(id_question)
+    print(question.text)
+    for answer in question.answers :
+        print(f"  {answer.text}, is_correct={answer.is_correct}")
+
 
     
 

@@ -6,9 +6,9 @@ class Player(SQLModel, table=True):
     name : str
     num_of_questions_with_correct_answer : int 
     num_of_questions_with_bad_answer : int 
-    camenbert_BASES_DE_DONNEES : bool
-    camenbert_LANGAGES_DE_PROGRAMMATION : bool
-    camenbert_LIGNE_DE_COMMANDES : bool
-    camenbert_ACTUALITES_IA : bool
-    camenbert_DEVOPS : bool
-    camenbert_TECH_IA : bool
+    camembert_BASES_DE_DONNEES : bool
+    camembert_LANGAGES_DE_PROGRAMMATION : bool
+    camembert_LIGNE_DE_COMMANDES : bool
+    camembert_ACTUALITES_IA : bool
+    camembert_DEVOPS : bool
+    camembert_TECH_IA : bool
