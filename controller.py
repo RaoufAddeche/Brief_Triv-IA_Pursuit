@@ -54,7 +54,7 @@ def is_camembert(joueur):
     else :
         return False
 
-def good_answer(joueur):
+def good_answer(joueur, iscamembert, id_theme):
     """
     If the player answer correctly, he can play again
     """
@@ -80,15 +80,32 @@ def ask_Questions(joueur, iscamembert, id_theme):
     question_choisie = random.choice(user.get_question_list(id_theme))
     print(question_choisie.text)
 
-
-    reponse = input("votre réponse :")
+    reponse = question_resolution(question_choisie)
 
     #si reponse correcte le joueur continue, sinon joueur suivant
-    reponse_correcte = "reponse"
-    if reponse == reponse_correcte:
+    if reponse.is_correct:
         return good_answer(joueur, iscamembert, id_theme)
 
     else:
         return wrong_answer(joueur)
+
+def question_resolution(question):
+    list_answers = question.answers
+    for i, answer in enumerate(list_answers):
+        print(f"choix {i+1} : {answer.text} ")
+    
+    n=0
+    while n not in ["1", "2", "3", "4"]: # trouver mieux
+        try:
+            n = input("votre réponse :")
+            if n not in ["1", "2", "3", "4"]:
+                raise Exception("Vous devez selectionner une des réponses") 
+        except:
+            print("Vous devez selectionner une des réponses")
+    return list_answers[int(n)-1]
+
+
+def camembert_win(player, id_theme):
+    pass
 
 new_turn()

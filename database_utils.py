@@ -74,6 +74,8 @@ class DatabaseUtils() :
             session_player.camembert_LANGAGES_DE_PROGRAMMATION = player.camembert_LANGAGES_DE_PROGRAMMATION
             session_player.camembert_LIGNE_DE_COMMANDES = player.camembert_LIGNE_DE_COMMANDES
             session_player.camembert_ACTUALITES_IA = player.camembert_ACTUALITES_IA
+            session_player.camembert_DEVOPS = player.camembert_DEVOPS
+            session_player.camembert_TECH_IA = player.camembert_TECH_IA
             session.add(session_player)
             session.commit()
 
