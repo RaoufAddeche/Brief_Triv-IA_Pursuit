@@ -1,4 +1,5 @@
 import random
+from themes import theme_choice
 
 """ test avec une fausse classe en attendant le reste : """
 
@@ -36,8 +37,7 @@ def new_turn(index_joueur):
     return ask_Questions(joueur, iscamembert, id_theme)
 
 def ask_Questions(joueur, *args):
-    # test en imaginant une mauvaise réponse
-    return wrong_answer(joueur)
+    pass
 
 def choice_input():
     n=0
@@ -49,16 +49,6 @@ def choice_input():
         except:
             print("Vous devez selectionner 1 ou 2")
     return int(n)
-
-def theme_choice():
-    """
-    return : tuple with two different int in [0,5]
-    """
-    n = random.randint(0,5)
-    m = random.randint(0,5)
-    while n == m:
-        m = random.randint(0,5)
-    return n,m
 
 def is_camembert(joueur):
     """
@@ -89,3 +79,4 @@ def wrong_answer(joueur):
     else:
         return new_turn(liste_joueur.index(joueur)+1)
 
+new_turn(1)
