@@ -2,10 +2,32 @@ import random
 from themes import theme_choice
 from enums import Themes
 from database_utils import DatabaseUtils
+from positions.positions import create_all_position, Position
+
+
+list_positions = create_all_position()
 
 user = DatabaseUtils()
 
 id_question= user.create_question(Themes.LANGAGES_DE_PROGRAMMATION.value, "testL")
+user.create_answer(id_question, "1", False)
+user.create_answer(id_question, "O2e", False)
+user.create_answer(id_question, "Mon3B", False)
+user.create_answer(id_question, "Tre", True)
+
+id_question= user.create_question(Themes.LIGNE_DE_COMMANDES.value, "testqsdaL")
+user.create_answer(id_question, "1", False)
+user.create_answer(id_question, "O2e", False)
+user.create_answer(id_question, "Mon3B", False)
+user.create_answer(id_question, "Tre", True)
+
+id_question= user.create_question(Themes.ACTUALITES_IA.value, "tesqjsdtL")
+user.create_answer(id_question, "1", False)
+user.create_answer(id_question, "O2e", False)
+user.create_answer(id_question, "Mon3B", False)
+user.create_answer(id_question, "Tre", True)
+
+id_question= user.create_question(Themes.DEVOPS.value, "tesqstL")
 user.create_answer(id_question, "1", False)
 user.create_answer(id_question, "O2e", False)
 user.create_answer(id_question, "Mon3B", False)
@@ -76,20 +98,30 @@ def wrong_answer(joueur):
 
 
 # Fonction principale du jeu
-def ask_Questions(joueur, iscamembert, id_theme):
+def ask_Questions(player, iscamembert, id_theme):
 
-    print(f"C'est au tour de {joueur.name}")
-    question_choisie = random.choice(user.get_question_list(id_theme))
-    print(question_choisie.text)
+    print(f"C'est au tour de {player.name}")
+    input("un input pour lancer le dés")
+    dice = random.randint(1,6)
+    r =input("voulez vous avancer dans le sens horaire (h) ou anti-horraire (a) ?" )
+    if r == "h":
+        new_position = list_positions[player.position_id].move(dice,True)
+    else:
+        new_position = list_positions[player.position_id].move(dice,False)
+    player.position_id = new_position
+    user.update_player(player)
+    id_theme = list_positions[player.position_id].theme
+    iscamembert = list_positions[player.position_id].iscamembert
 
-    reponse = question_resolution(question_choisie)
+    question = (random.choice(user.get_question_list(id_theme)))
+    reponse = question_resolution(question)
 
     #si reponse correcte le joueur continue, sinon joueur suivant
     if reponse.is_correct:
-        return good_answer(joueur, iscamembert, id_theme)
+        return good_answer(player, iscamembert, id_theme)
 
     else:
-        return wrong_answer(joueur)
+        return wrong_answer(player)
 
 def question_resolution(question):
     list_answers = question.answers

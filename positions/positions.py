@@ -6,6 +6,16 @@ class Position:
         self.iscamembert = True if id%7 == 0 else False
         self.img = str(id) + ".png"
 
+    def move(self, dice, direction):
+        """
+        return id of the next position
+        """
+        if direction:
+            return (self.id + dice)%42
+        else:
+            return (self.id - dice)%42
+
+
 def create_all_position():
     """
     0 : "Bases de données"
@@ -22,5 +32,3 @@ def create_all_position():
         list_positions.append(Position(i,b))
     return list_positions
 
-
-print(create_all_position())
