@@ -54,13 +54,15 @@ def is_camembert(joueur):
     else :
         return False
 
-def good_answer(joueur, iscamembert, id_theme):
+def good_answer(player, iscamembert, id_theme):
     """
     If the player answer correctly, he can play again
     """
     print("bonne réponse !")
-    joueur.num_of_questions_with_correct_answer += 1
-    return new_turn(liste_joueur.index(joueur))
+    player.num_of_questions_with_correct_answer += 1
+    if iscamembert:
+        camembert_win(player, id_theme)
+    return new_turn(liste_joueur.index(player))
 
 def wrong_answer(joueur):
     """
