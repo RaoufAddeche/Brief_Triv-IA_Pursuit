@@ -4,10 +4,12 @@ from enums import Themes
 
 if __name__ == "__main__" :
     user = DatabaseUtils()
-    user.create_player("Nicolas")
-    user.create_player("Victor")
-    user.create_player("Raouff")
-    user.create_player("Samuel")
+
+    id_game = user.create_game()
+    user.create_player(id_game, "Nicolas")
+    user.create_player(id_game, "Victor")
+    user.create_player(id_game, "Raouf")
+    user.create_player(id_game, "Samuel")
 
     id_question= user.create_question(Themes.BASES_DE_DONNEES.value, "Trouvez l'intrus")
     user.create_answer(id_question, "SQL Server", False)

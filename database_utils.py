@@ -2,11 +2,12 @@
 import sqlmodel as sm
 from sqlalchemy import Engine
 import os
+import datetime as dt
 
 import init_db as idb
 from enums import Filenames, Themes
 
-from playermodels import Player
+from playermodels import Game, Player
 from questionmodels import Question, Answer
 
 class DatabaseUtils() :
@@ -33,17 +34,36 @@ class DatabaseUtils() :
     #
     # region game
     #__________________________________________________________________________
-    def create_game() :
-        pass
+    def create_game(self) -> int :
+        id_game = -1
+        with sm.Session(self.engine) as session:
+            new_game = Game(current_round=0, date = dt.date.today())
+            new_game.players = []
+            session.add(new_game)
+            session.commit()
+            id_game = new_game.id_game
+
+        return id_game
+    
+    def get_game(self, id_game) -> Game :
+        return_game = None
+        with sm.Session(self.engine) as session:
+            statement = sm.select(Game).where(Game.id_game==id_game)
+            results = session.exec(statement)
+            return_game = results.one()
+            return_game.players = list(return_game.players)
+            
+        return return_game
 
     #__________________________________________________________________________
     #
     # region player
     #__________________________________________________________________________
-    def create_player(self, name :str) :
+
+    def create_player(self, id_game: int, player_name :str) :
         with sm.Session(self.engine) as session:
             new_player = Player(
-                name=name,
+                name=player_name,
                 num_of_questions_with_bad_answer=0,
                 num_of_questions_with_correct_answer=0,
                 camembert_BASES_DE_DONNEES=False,
@@ -51,7 +71,9 @@ class DatabaseUtils() :
                 camembert_LIGNE_DE_COMMANDES=False,
                 camembert_ACTUALITES_IA=False,
                 camembert_DEVOPS=False,
-                camembert_TECH_IA=False)
+                camembert_TECH_IA=False,
+                game_id = id_game)
+        
             session.add(new_player)
             session.commit()
 
