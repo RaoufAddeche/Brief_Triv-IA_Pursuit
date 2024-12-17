@@ -64,12 +64,12 @@ class DatabaseUser() :
                 name=name,
                 num_of_questions_with_bad_answer=0,
                 num_of_questions_with_correct_answer=0,
-                camenbert_BASES_DE_DONNEES=False,
-                camenbert_LANGAGES_DE_PROGRAMMATION=False,
-                camenbert_LIGNE_DE_COMMANDES=False,
-                camenbert_ACTUALITES_IA=False,
-                camenbert_DEVOPS=False,
-                camenbert_TECH_IA=False)
+                camembert_BASES_DE_DONNEES=False,
+                camembert_LANGAGES_DE_PROGRAMMATION=False,
+                camembert_LIGNE_DE_COMMANDES=False,
+                camembert_ACTUALITES_IA=False,
+                camembert_DEVOPS=False,
+                camembert_TECH_IA=False)
             session.add(new_player)
             session.commit()
 
