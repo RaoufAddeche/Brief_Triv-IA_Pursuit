@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import controllers.controller as controller
-=======
 import streamlit as st
 from random import randint as rand
 from playermodels import Player
@@ -88,4 +85,3 @@ if st.button("reroll"):
         player.camembert_LANGAGES_DE_PROGRAMMATION = rand(0,1)
         player.camembert_TECH_IA = rand(0,1)
         player.camembert_LIGNE_DE_COMMANDES = rand(0,1)
->>>>>>> 24ddfb5604cc17090af61ec5a0f7e8cb53c4ee8d

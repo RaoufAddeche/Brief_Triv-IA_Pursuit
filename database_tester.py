@@ -29,7 +29,7 @@ if __name__ == "__main__" :
             print(f"  {answer.text}, is_correct={answer.is_correct}")
 
 
-    
 
+    list_players = user.get_players()
 
 
