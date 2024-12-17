@@ -5,7 +5,10 @@ class Question(SQLModel, table=True):
     id_question: Optional[int] = Field(default=None, primary_key=True)
     id_theme : int 
     text : str
+    
     answers : list["Answer"]= Relationship(back_populates="question") 
+
+    __table_args__ = {'extend_existing': True} 
 
 class Answer(SQLModel, table=True):
     id_anwser : Optional[int] = Field(default=None, primary_key=True)
@@ -14,4 +17,6 @@ class Answer(SQLModel, table=True):
 
     question_id: Optional[int] = Field(default=None, foreign_key="question.id_question")
     question :Optional[Question] = Relationship(back_populates="answers")
+    
+    __table_args__ = {'extend_existing': True} 
     
