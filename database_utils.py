@@ -61,6 +61,7 @@ class DatabaseUtils() :
     #__________________________________________________________________________
 
     def create_player(self, id_game: int, player_name :str) :
+        player = None
         with sm.Session(self.engine) as session:
             new_player = Player(
                 name=player_name,
@@ -104,6 +105,9 @@ class DatabaseUtils() :
         
             session.add(session_player)
             session.commit()
+            player = new_player
+            
+        return player
 
     #__________________________________________________________________________
     #
