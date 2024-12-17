@@ -18,19 +18,21 @@ list_players = user.get_players()
 liste_theme = ["Bases de données", "Langages de programmation", "Ligne de commandes", "Actualités IA", "DevOps", "promo tech IA !"]
 liste_joueur = list_players
 
+
 def new_turn(index_joueur=0):
     joueur = liste_joueur[index_joueur]
     iscamembert = is_camembert(joueur)
     themechoice = theme_choice()
+
     print("Choisissez votre theme :")
     print("1 pour {}".format(liste_theme[themechoice[0]]))
     print("2 pour {}".format(liste_theme[themechoice[1]]))
     n = choice_input()-1
     id_theme = liste_theme.index(liste_theme[themechoice[n]])
+
     return ask_Questions(joueur, iscamembert, id_theme)
 
-def ask_Questions(joueur, *args):
-    pass
+
 
 def choice_input():
     n=0
@@ -58,8 +60,14 @@ def good_answer(joueur, iscamembert, id_theme):
     """
     If the player answer correctly, he can play again
     """
+    # if is camembert , +1 en fonction de l'id du theme et du joueur
     print("bonne réponse !")
     joueur.num_of_questions_with_correct_answer += 1
+
+    if iscamembert:
+        if update_camembert(joueur, id_theme):
+            return
+        
     return new_turn(liste_joueur.index(joueur))
 
 def wrong_answer(joueur):
@@ -109,3 +117,6 @@ def camembert_win(player, id_theme):
     pass
 
 new_turn()
+
+
+#
