@@ -75,9 +75,6 @@ def wrong_answer(joueur):
 
 # Fonction principale du jeu
 def ask_Questions(joueur, iscamembert, id_theme):
-    themes = questions_by_theme()
-    joueurs = ["Joueur 1", "Joueur 2"]
-    current_joueur = 0
 
     print(f"C'est au tour de {joueur.name}")
     question_choisie = random.choice(user.get_question_list(id_theme))
@@ -89,7 +86,7 @@ def ask_Questions(joueur, iscamembert, id_theme):
     #si reponse correcte le joueur continue, sinon joueur suivant
     reponse_correcte = "reponse"
     if reponse == reponse_correcte:
-        return good_answer(joueur, is_camembert, id_theme)
+        return good_answer(joueur, iscamembert, id_theme)
 
     else:
         return wrong_answer(joueur)
