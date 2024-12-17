@@ -8,26 +8,26 @@ import init_db as idb
 from playermodels import Player
 from questionmodels import Question, Answer
 
+from typing import cast
+
 class DatabaseTester() :
 
     def __init__(self) :
         self.engine = idb.get_engine()
 
-        # Vérification de l'existence de la base de données pour décider si elle doit être créée
         need_creation = True
         for filename in os.listdir(os.getcwd()):
             if filename == Filenames.SQLITE_DB:
                 need_creation = False
                 break
 
-        # Si la base de données n'existe pas, on la crée
         if need_creation:
             echo_object = sm.SQLModel.metadata.create_all(self.engine)
 
     def create_question(self, id_theme : int, text :str) -> int :
         id_question = 0
         with sm.Session(self.engine) as session:
-            new_question = Question(id_theme=id_theme, text = text)
+            new_question = Question(theme_id=id_theme, text = text)
             session.add(new_question)
             session.commit()
             id_question = new_question.id_question
@@ -40,13 +40,14 @@ class DatabaseTester() :
             statement = sm.select(Question).where(Question.id_question==id_question)
             results = session.exec(statement)
             return_question = results.one()
-
+            return_question.answers = list(return_question.answers)
+            
         return return_question
 
     def get_question_list(self, id_theme : int) -> list[Question] :
         question_list = []
         with sm.Session(self.engine) as session:
-            statement = sm.select(Question) 
+            statement = sm.select(Question).where(Question.theme_id==id_theme) 
             results = session.exec(statement)
             question_list = list(results)
 
@@ -54,7 +55,7 @@ class DatabaseTester() :
 
     def create_answer(self, id_question : int, text :str, is_correct : bool) :
         with sm.Session(self.engine) as session:
-            new_answer = Answer(id_question=id_question, text = text, is_correct = is_correct)
+            new_answer = Answer(question_id=id_question, text = text, is_correct = is_correct)
             session.add(new_answer)
             session.commit()
 
