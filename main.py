@@ -2,6 +2,7 @@ import streamlit as st
 from random import randint as rand
 from playermodels import Player
 from streamlit_functions import display_game_state_sidebar
+import database_utils as db
 
 #region Init
 #Intialization and script resets
@@ -13,6 +14,8 @@ if "game_state" not in st.session_state:
     st.session_state.player_list = []  
 
     st.session_state.reset_players = False
+    
+    st.session_state.db = db.DatabaseUtils()
 
 if st.session_state.reset_players:
     st.session_state.player_count = 1
@@ -60,9 +63,12 @@ if st.session_state.game_state == 0:
         
         #If all name are valid, add players to the pool and launch the game. 
         if name_validation:
+            
+            id_game = st.session_state.db.create_game()
+            
             for x in range(0, st.session_state.player_count):
-                st.session_state[f"player_{x}"] = Player()
-                st.session_state[f"player_{x}"].name = st.session_state[f"player_name_{x}"]
+                st.session_state[f"player_{x}"] = st.session_state.db.create_player(id_game, st.session_state[f"player_name_{x}"])
+                # st.session_state[f"player_{x}"].name = st.session_state[f"player_name_{x}"]
                 st.session_state.player_list.append(st.session_state[f"player_{x}"])
             
             st.session_state.game_state = 1

@@ -1,11 +1,11 @@
 import questionmodels
-import database_tester
+import database_utils
 import streamlit as st
 from enums import Themes
 import json_handler
 
 if not "db" in st.session_state:
-    st.session_state.db = database_tester.DatabaseTester()
+    st.session_state.db = database_utils.DatabaseUtils()
 
 # questions = json_handler.get_dataset()
 
