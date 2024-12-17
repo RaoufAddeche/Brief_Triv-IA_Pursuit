@@ -3,6 +3,7 @@ from random import randint as rand
 from playermodels import Player
 from streamlit_functions import display_game_state_sidebar
 
+#region Init
 #Intialization and script resets
 #___________________________
 if "game_state" not in st.session_state:
@@ -83,3 +84,7 @@ if st.session_state.game_state == 1:
             player.camembert_LIGNE_DE_COMMANDES = rand(0,1)
         
         st.rerun()
+
+            
+        
+        
