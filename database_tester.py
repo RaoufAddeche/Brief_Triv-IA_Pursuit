@@ -50,6 +50,8 @@ class DatabaseTester() :
             statement = sm.select(Question).where(Question.theme_id==id_theme) 
             results = session.exec(statement)
             question_list = list(results)
+            for question in question_list :
+                question.answers = list(question.answers)
 
         return question_list
 
@@ -81,20 +83,24 @@ if __name__ == "__main__" :
     user.create_player("Raouff")
     user.create_player("Samuel")
 
-    id_question= user.create_question(0, "Trouvez l'intrus")
+    id_question= user.create_question(Themes.BASES_DE_DONNEES.value, "Trouvez l'intrus")
     user.create_answer(id_question, "SQL Server", False)
     user.create_answer(id_question, "Oracle", False)
-    user.create_answer(id_question, "Mongo DB", False)
+    user.create_answer(id_question, "MongoDB", False)
     user.create_answer(id_question, "Turtle DB", True)
 
-    print(f"{Themes.BASES_DE_DONNEES} ={Themes.BASES_DE_DONNEES.value}")
-    print(f"{Themes.TECH_IA} ={Themes.TECH_IA.value}")
+    id_question= user.create_question(Themes.BASES_DE_DONNEES.value, "Quelle est la base de données de Google Maps ?")
+    user.create_answer(id_question, "Elasticsearch", False)
+    user.create_answer(id_question, "Bigtable", True)
+    user.create_answer(id_question, "PostgreSQL", False)
+    user.create_answer(id_question, "Cassandra", False)
 
-
-    question = user.get_question(id_question)
-    print(question.text)
-    for answer in question.answers :
-        print(f"  {answer.text}, is_correct={answer.is_correct}")
+    questions = user.get_question_list(Themes.BASES_DE_DONNEES.value)
+    for question in questions :
+        print("______________________________________________")
+        print(question.text)
+        for answer in question.answers :
+            print(f"  {answer.text}, is_correct={answer.is_correct}")
 
 
     
