@@ -18,11 +18,14 @@ class Player():
             self.camembert_TECH_IA = camembert_TECH_IA
 
 J1 = Player("nico",3,5)
+J2 = Player("Soraya", 0, 0)
 
 
 liste_theme = ["Bases de données", "Langages de programmation", "Ligne de commandes", "Actualités IA", "DevOps", "promo tech IA !"]
+liste_joueur = [J1, J2]
 
-def new_turn(joueur):
+def new_turn(index_joueur):
+    joueur = liste_joueur[index_joueur]
     iscamembert = is_camembert(joueur)
     themechoice = theme_choice()
     print("Choisissez votre theme :")
@@ -30,10 +33,11 @@ def new_turn(joueur):
     print("2 pour {}".format(liste_theme[themechoice[1]]))
     n = choice_input()-1
     id_theme = liste_theme.index(liste_theme[themechoice[n]])
-    return ask_Questions(iscamembert, joueur, id_theme)
+    return ask_Questions(joueur, iscamembert, id_theme)
 
-def ask_Questions(*args):
-    pass
+def ask_Questions(joueur, *args):
+    # test en imaginant une mauvaise réponse
+    return wrong_answer(joueur)
 
 def choice_input():
     n=0
@@ -67,4 +71,21 @@ def is_camembert(joueur):
     else :
         return False
 
-print(new_turn(J1))
+def good_answer(joueur):
+    """
+    If the player answer correctly, he can play again
+    """
+    joueur.num_of_questions_with_correct_answer += 1
+    return new_turn(liste_joueur.index(joueur))
+
+def wrong_answer(joueur):
+    """
+    If he's wrong, next player
+    """
+    joueur.num_of_questions_with_bad_answer += 1
+    n = liste_joueur.index(joueur)
+    if n == len(liste_joueur)-1:
+        return new_turn(0)
+    else:
+        return new_turn(liste_joueur.index(joueur)+1)
+
