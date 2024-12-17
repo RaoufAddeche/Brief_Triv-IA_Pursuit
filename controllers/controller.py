@@ -25,7 +25,7 @@ J2 = Player("Soraya", 0, 0)
 liste_theme = ["Bases de données", "Langages de programmation", "Ligne de commandes", "Actualités IA", "DevOps", "promo tech IA !"]
 liste_joueur = [J1, J2]
 
-def new_turn(index_joueur):
+def new_turn(index_joueur=0):
     joueur = liste_joueur[index_joueur]
     iscamembert = is_camembert(joueur)
     themechoice = theme_choice()
