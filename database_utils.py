@@ -77,6 +77,9 @@ class DatabaseUtils() :
         
             session.add(new_player)
             session.commit() 
+            player = new_player
+            
+        return player
 
 
     def get_players(self, id_game : int) -> list[Player]:
@@ -105,9 +108,6 @@ class DatabaseUtils() :
         
             session.add(session_player)
             session.commit()
-            player = new_player
-            
-        return player
 
     #__________________________________________________________________________
     #
