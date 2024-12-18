@@ -84,6 +84,33 @@ class DatabaseUtils() :
             
         return self.get_player_by_id(player_id)
 
+    def get_players(self) -> list[Player]:
+        list_players = []
+        with sm.Session(self.engine) as session:
+            statement = sm.select(Player)
+            results = session.exec(statement)
+            list_players = list(results)
+        return list_players
+    
+    def update_player(self, player:Player):
+        with sm.Session(self.engine) as session:
+            statement = sm.select(Player).where(player.id_player == Player.id_player)
+            session_player = session.exec(statement).one()
+            session_player.name = player.name
+            session_player.num_of_questions_with_bad_answer = player.num_of_questions_with_bad_answer
+            session_player.num_of_questions_with_correct_answer = player.num_of_questions_with_correct_answer
+            session_player.camembert_BASES_DE_DONNEES = player.camembert_BASES_DE_DONNEES
+            session_player.camembert_LANGAGES_DE_PROGRAMMATION = player.camembert_LANGAGES_DE_PROGRAMMATION
+            session_player.camembert_LIGNE_DE_COMMANDES = player.camembert_LIGNE_DE_COMMANDES
+            session_player.camembert_ACTUALITES_IA = player.camembert_ACTUALITES_IA
+            session_player.camembert_DEVOPS = player.camembert_DEVOPS
+            session_player.camembert_TECH_IA = player.camembert_TECH_IA
+            session.add(session_player)
+            session.commit()
+
+            
+
+
     #__________________________________________________________________________
     #
     # region question
