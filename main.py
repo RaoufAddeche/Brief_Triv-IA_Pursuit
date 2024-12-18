@@ -77,20 +77,11 @@ if st.session_state.game_state == 0:
 
 display_game_state_sidebar()
 
-#region Game State 1
-if st.session_state.game_state == 1:
-        
-    if st.button("DEBUG : Random camemberts"):
-        for player in st.session_state.player_list:
-            player.camembert_ACTUALITES_IA = rand(0,1)
-            player.camembert_BASES_DE_DONNEES = rand(0,1)
-            player.camembert_DEVOPS = rand(0,1)
-            player.camembert_LANGAGES_DE_PROGRAMMATION = rand(0,1)
-            player.camembert_TECH_IA = rand(0,1)
-            player.camembert_LIGNE_DE_COMMANDES = rand(0,1)
-        
-        st.rerun()
-
-            
-        
-        
+if st.button("reroll"):
+    for player in st.session_state.player_list:
+        player.camembert_ACTUALITES_IA = rand(0,1)
+        player.camembert_BASES_DE_DONNEES = rand(0,1)
+        player.camembert_DEVOPS = rand(0,1)
+        player.camembert_LANGAGES_DE_PROGRAMMATION = rand(0,1)
+        player.camembert_TECH_IA = rand(0,1)
+        player.camembert_LIGNE_DE_COMMANDES = rand(0,1)

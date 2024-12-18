@@ -64,7 +64,7 @@ if __name__ == "__main__" :
 
 
 
-    
 
+    list_players = user.get_players()
 
 

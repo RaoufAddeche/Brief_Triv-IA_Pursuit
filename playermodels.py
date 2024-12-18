@@ -28,5 +28,15 @@ class Player(SQLModel, table=True):
 
     game_id : Optional[int] = Field(default=None, foreign_key="game.id_game")
     game : Optional[Game] = Relationship(back_populates="players")
+    position_id : int = Field(default=0)
     
     __table_args__ = {'extend_existing': True} 
+
+    def is_final_step(self):
+        #check si le joueur a tout les camemberts
+        return (self.camembert_ACTUALITES_IA and 
+                self.camembert_BASES_DE_DONNEES and 
+                self.camembert_DEVOPS and 
+                self.camembert_LANGAGES_DE_PROGRAMMATION and 
+                self.camembert_TECH_IA and 
+                self.camembert_LIGNE_DE_COMMANDES)
