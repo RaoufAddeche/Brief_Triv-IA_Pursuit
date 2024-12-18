@@ -6,11 +6,11 @@ class Position:
         self.iscamembert = True if id%7 == 0 else False
         self.img = str(id) + ".png"
 
-    def move(self, dice, direction):
+    def move(self, dice, clockwork_dir):
         """
         return id of the next position
         """
-        if direction:
+        if clockwork_dir:
             return (self.id + dice)%42
         else:
             return (self.id - dice)%42

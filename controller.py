@@ -2,7 +2,7 @@ import random
 from themes import theme_choice
 from enums import Themes
 from database_utils import DatabaseUtils
-from positions.positions import create_all_position, Position
+from positions import create_all_position, Position
 from playermodels import Player
 
 def new_turn(index_player=0):
@@ -100,6 +100,9 @@ def roll_dice(player):
     id_theme = list_positions[player.position_id].theme
     iscamembert = list_positions[player.position_id].iscamembert
     return((id_theme,iscamembert))
+
+def get_possible_move(current_pos, dice_roll):
+    return (current_pos.move(dice_roll, True), current_pos.move(dice_roll, False))    
 
 
 # Logique pour finir le jeu
