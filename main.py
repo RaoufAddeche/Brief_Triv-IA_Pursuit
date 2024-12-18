@@ -75,7 +75,7 @@ if st.session_state.game_state == 0:
             
             for x in range(0, st.session_state.player_count):
                 st.session_state[f"player_{x}"] = st.session_state.db.create_player(id_game, st.session_state[f"player_name_{x}"])
-                t.session_state[f"player_name_{x}"].position_id = (x*7)
+                st.session_state[f"player_{x}"].position_id = (x*7)
                 st.session_state.player_list.append(st.session_state[f"player_{x}"])
             
             st.session_state.game_state = 1
@@ -93,13 +93,15 @@ if st.session_state.game_state == 1:
             for theme in Themes:
                 st.session_state[f"questions_{theme.name}"] = st.session_state.db.get_question_list(theme.value)
             
-            st.session_state.game_step = 1
+            st.session_state.game_step = 0
+            st.rerun()
         case 0:
-            st.write(f"{st.session_state.player_list[st.session_state.current_player].name}, c'est votre tour !")
-            st.image(f"pictures/positions/{st.session_state.player_list[st.session_state.current_player].position_id}", caption="Votre position.")
+            st.header(f"{st.session_state.player_list[st.session_state.current_player].name}, c'est votre tour ! :sunglasses:")
+            st.image(f"positions/{st.session_state.player_list[st.session_state.current_player].position_id}.png", caption="Votre position.")
             
             if st.button("joueur suivant"):
                 next_player()
+                st.rerun()
                       
         
         
