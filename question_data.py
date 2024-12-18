@@ -9,7 +9,23 @@ class QuestionData() :
         pass
 
     def question_import(self, filename : str) :
-        pass
+        loaded_object = None
+        with open(filename, "r") as reading_file :
+            loaded_object = json.load(reading_file)
+
+        if loaded_object == None :
+            raise Exception("Impossible to read data")
+
+        user = DatabaseUtils()
+        for question in loaded_object :
+            question_id = user.create_question(int(question["theme_id"]), question["text"])
+            answers = question["answers"]
+            for answer in answers :
+                user.create_answer(question_id, answer["text"], bool(answer["is_correct"]))
+            
+
+
+        
 
     def question_export(self, filename : str) :
         user = DatabaseUtils()
