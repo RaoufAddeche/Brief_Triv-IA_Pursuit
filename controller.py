@@ -5,8 +5,9 @@ from database_utils import DatabaseUtils
 from positions.positions import create_all_position, Position
 from playermodels import Player
 
+
 def new_turn(index_player=0):
-    player = liste_player[index_player]
+    player = list_players[index_player]
     return ask_questions(player)
 
 
@@ -26,7 +27,7 @@ def good_answer(player, iscamembert, id_theme):
         # Envoie le player à la dernière ligne droite du jeu
         return last_step(player)
     user.update_player(player)
-    return new_turn(liste_player.index(player))
+    return new_turn(list_players.index(player))
 
 def update_camembert(player, id_theme):
     """
@@ -44,7 +45,7 @@ def wrong_answer(player):
     print("mauvaise réponse !")
     player.num_of_questions_with_bad_answer += 1
     user.update_player(player)
-    n = (liste_player.index(player)+1)%len(liste_player)
+    n = (list_players.index(player)+1)%len(list_players)
     return new_turn(n)
 
 
@@ -132,5 +133,11 @@ def last_step(player):
         print("Le joueur a reussi a répondre aux 6 questions, il remporte la partie")
         return True
 
-last_step(liste_player[0])
+
+if __name__ == "__main__":
+    list_positions = create_all_position()
+    user = DatabaseUtils()
+    list_players = user.get_players()
+    list_player = list_players
+    new_turn()
 
