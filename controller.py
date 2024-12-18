@@ -66,6 +66,14 @@ def good_answer(player, iscamembert, id_theme):
     user.update_player(player)
     return new_turn(liste_player.index(player))
 
+def update_camembert(player, id_theme):
+    """
+    Met à jour les camemberts du joueur s'il répond correctement à une question.
+    """
+    camembert_names = ["BASES_DE_DONNEES", "LANGAGES_DE_PROGRAMMATION", "LIGNE_DE_COMMANDES", "ACTUALITES_IA", "DEVOPS", "TECH_IA"]
+    camembert_name = camembert_names[id_theme]
+    setattr(player, f"camembert_{camembert_name}", True)
+
 
 def wrong_answer(player):
     """
@@ -87,6 +95,9 @@ def ask_questions(player):
     while id_theme == 6:
         print("Vous pouvez relancer le dés !")
         id_theme, is_camembert = roll_dice(player)
+    
+    if is_camembert:
+        print("c'est un camembert")
 
     question = (random.choice(user.get_question_list(id_theme)))
     reponse = question_resolution(question)
