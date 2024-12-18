@@ -5,44 +5,6 @@ from database_utils import DatabaseUtils
 from positions.positions import create_all_position, Position
 from playermodels import Player
 
-list_positions = create_all_position()
-user = DatabaseUtils()
-
-id_question= user.create_question(Themes.LANGAGES_DE_PROGRAMMATION.value, "testL")
-user.create_answer(id_question, "1", False)
-user.create_answer(id_question, "O2e", False)
-user.create_answer(id_question, "Mon3B", False)
-user.create_answer(id_question, "Tre", True)
-
-id_question= user.create_question(Themes.LIGNE_DE_COMMANDES.value, "testqsdaL")
-user.create_answer(id_question, "1", False)
-user.create_answer(id_question, "O2e", False)
-user.create_answer(id_question, "Mon3B", False)
-user.create_answer(id_question, "Tre", True)
-
-id_question= user.create_question(Themes.ACTUALITES_IA.value, "tesqjsdtL")
-user.create_answer(id_question, "1", False)
-user.create_answer(id_question, "O2e", False)
-user.create_answer(id_question, "Mon3B", False)
-user.create_answer(id_question, "Tre", True)
-
-id_question= user.create_question(Themes.DEVOPS.value, "tesqstL")
-user.create_answer(id_question, "1", False)
-user.create_answer(id_question, "O2e", False)
-user.create_answer(id_question, "Mon3B", False)
-user.create_answer(id_question, "Tre", True)
-
-id_question= user.create_question(Themes.TECH_IA.value, "tesqjsdtL")
-user.create_answer(id_question, "1", False)
-user.create_answer(id_question, "O2e", False)
-user.create_answer(id_question, "Mon3B", False)
-user.create_answer(id_question, "Tre", True)
-
-
-list_players = user.get_players()
-liste_theme = ["Bases de données", "Langages de programmation", "Ligne de commandes", "Actualités IA", "DevOps", "promo tech IA !"]
-liste_player = list_players
-
 def new_turn(index_player=0):
     player = liste_player[index_player]
     return ask_questions(player)
@@ -163,7 +125,47 @@ def last_step(player):
 
     print(f"{player.name} a réussi à répondre correctement aux 6 questions! Il a gagné")
 
-new_turn()
+if __name__ == "__main__":
+
+    list_positions = create_all_position()
+    user = DatabaseUtils()
+
+    id_question= user.create_question(Themes.LANGAGES_DE_PROGRAMMATION.value, "testL")
+    user.create_answer(id_question, "1", False)
+    user.create_answer(id_question, "O2e", False)
+    user.create_answer(id_question, "Mon3B", False)
+    user.create_answer(id_question, "Tre", True)
+
+    id_question= user.create_question(Themes.LIGNE_DE_COMMANDES.value, "testqsdaL")
+    user.create_answer(id_question, "1", False)
+    user.create_answer(id_question, "O2e", False)
+    user.create_answer(id_question, "Mon3B", False)
+    user.create_answer(id_question, "Tre", True)
+
+    id_question= user.create_question(Themes.ACTUALITES_IA.value, "tesqjsdtL")
+    user.create_answer(id_question, "1", False)
+    user.create_answer(id_question, "O2e", False)
+    user.create_answer(id_question, "Mon3B", False)
+    user.create_answer(id_question, "Tre", True)
+
+    id_question= user.create_question(Themes.DEVOPS.value, "tesqstL")
+    user.create_answer(id_question, "1", False)
+    user.create_answer(id_question, "O2e", False)
+    user.create_answer(id_question, "Mon3B", False)
+    user.create_answer(id_question, "Tre", True)
+
+    id_question= user.create_question(Themes.TECH_IA.value, "tesqjsdtL")
+    user.create_answer(id_question, "1", False)
+    user.create_answer(id_question, "O2e", False)
+    user.create_answer(id_question, "Mon3B", False)
+    user.create_answer(id_question, "Tre", True)
+
+
+    list_players = user.get_players()
+    liste_theme = ["Bases de données", "Langages de programmation", "Ligne de commandes", "Actualités IA", "DevOps", "promo tech IA !"]
+    liste_player = list_players
+    
+    new_turn()
 
 
 #

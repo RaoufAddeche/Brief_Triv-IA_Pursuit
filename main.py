@@ -1,26 +1,32 @@
 import streamlit as st
 from random import randint as rand
 from playermodels import Player
-from streamlit_functions import display_game_state_sidebar
+from streamlit_functions import display_game_state_sidebar, next_player
 import database_utils as db
+import controller as ctrl
+from enums import Themes
 
 #region Init
 #Intialization and script resets
 #___________________________
 if "game_state" not in st.session_state:
     st.session_state.game_state = 0    
-    st.session_state.player_count = 1      
+    st.session_state.game_step = -1
+    st.session_state.player_count = 1     
+    st.session_state.current_player = 0 
     
     st.session_state.player_list = []  
 
-    st.session_state.reset_players = False
+    st.session_state.reset_game = False
     
     st.session_state.db = db.DatabaseUtils()
 
-if st.session_state.reset_players:
+if st.session_state.reset_game:
     st.session_state.player_count = 1
     st.session_state.player_list = []  
-    st.session_state.reset_players = False
+    st.session_state.reset_game = False
+    st.session_state.current_player = 0 
+    st.session_state.game_step = -1
     
 #___________________________
 
@@ -65,10 +71,11 @@ if st.session_state.game_state == 0:
         if name_validation:
             
             id_game = st.session_state.db.create_game()
+            st.session_state.game_id = id_game
             
             for x in range(0, st.session_state.player_count):
                 st.session_state[f"player_{x}"] = st.session_state.db.create_player(id_game, st.session_state[f"player_name_{x}"])
-                # st.session_state[f"player_{x}"].name = st.session_state[f"player_name_{x}"]
+                t.session_state[f"player_name_{x}"].position_id = (x*7)
                 st.session_state.player_list.append(st.session_state[f"player_{x}"])
             
             st.session_state.game_state = 1
@@ -78,19 +85,35 @@ if st.session_state.game_state == 0:
 display_game_state_sidebar()
 
 #region Game State 1
-if st.session_state.game_state == 1:
-        
-    if st.button("DEBUG : Random camemberts"):
-        for player in st.session_state.player_list:
-            player.camembert_ACTUALITES_IA = rand(0,1)
-            player.camembert_BASES_DE_DONNEES = rand(0,1)
-            player.camembert_DEVOPS = rand(0,1)
-            player.camembert_LANGAGES_DE_PROGRAMMATION = rand(0,1)
-            player.camembert_TECH_IA = rand(0,1)
-            player.camembert_LIGNE_DE_COMMANDES = rand(0,1)
-        
-        st.rerun()
 
+
+if st.session_state.game_state == 1:
+    match st.session_state.game_step:
+        case -1:
+            for theme in Themes:
+                st.session_state[f"questions_{theme.name}"] = st.session_state.db.get_question_list(theme.value)
             
+            st.session_state.game_step = 1
+        case 0:
+            st.write(f"{st.session_state.player_list[st.session_state.current_player].name}, c'est votre tour !")
+            st.image(f"pictures/positions/{st.session_state.player_list[st.session_state.current_player].position_id}", caption="Votre position.")
+            
+            if st.button("joueur suivant"):
+                next_player()
+                      
         
         
+        case 1:
+            pass
+    
+        
+    # if st.button("DEBUG : Random camemberts"):
+    #     for player in st.session_state.player_list:
+    #         player.camembert_ACTUALITES_IA = rand(0,1)
+    #         player.camembert_BASES_DE_DONNEES = rand(0,1)
+    #         player.camembert_DEVOPS = rand(0,1)
+    #         player.camembert_LANGAGES_DE_PROGRAMMATION = rand(0,1)
+    #         player.camembert_TECH_IA = rand(0,1)
+    #         player.camembert_LIGNE_DE_COMMANDES = rand(0,1)
+        
+    #     st.rerun()
