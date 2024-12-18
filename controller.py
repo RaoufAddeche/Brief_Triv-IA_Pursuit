@@ -3,10 +3,9 @@ from themes import theme_choice
 from enums import Themes
 from database_utils import DatabaseUtils
 from positions.positions import create_all_position, Position
-
+from playermodels import Player
 
 list_positions = create_all_position()
-
 user = DatabaseUtils()
 
 id_question= user.create_question(Themes.LANGAGES_DE_PROGRAMMATION.value, "testL")
@@ -42,10 +41,10 @@ user.create_answer(id_question, "Tre", True)
 
 list_players = user.get_players()
 liste_theme = ["Bases de données", "Langages de programmation", "Ligne de commandes", "Actualités IA", "DevOps", "promo tech IA !"]
-liste_joueur = list_players
+liste_player = list_players
 
-def new_turn(index_joueur=0):
-    player = liste_joueur[index_joueur]
+def new_turn(index_player=0):
+    player = liste_player[index_player]
     return ask_questions(player)
 
 
@@ -53,12 +52,20 @@ def good_answer(player, iscamembert, id_theme):
     """
     If the player answer correctly, he can play again
     """
+    # if is camembert , +1 en fonction de l'id du theme et du player
     print("bonne réponse !")
     player.num_of_questions_with_correct_answer += 1
     if iscamembert:
-        camembert_win(player, id_theme)
+        update_camembert(player, id_theme)
+        
+    # Check si le player a tout les camemberts
+    if player.is_final_step():
+        print(f"{player.name} a tous les camemberts ! Il est maintenant dans la dernière ligne droite.")
+        # Envoie le player à la dernière ligne droite du jeu
+        return last_step(player)
     user.update_player(player)
-    return new_turn(liste_joueur.index(player))
+    return new_turn(liste_player.index(player))
+
 
 def wrong_answer(player):
     """
@@ -67,7 +74,7 @@ def wrong_answer(player):
     print("mauvaise réponse !")
     player.num_of_questions_with_bad_answer += 1
     user.update_player(player)
-    n = (liste_joueur.index(player)+1)%len(liste_joueur)
+    n = (liste_player.index(player)+1)%len(liste_player)
     return new_turn(n)
 
 
@@ -84,7 +91,7 @@ def ask_questions(player):
     question = (random.choice(user.get_question_list(id_theme)))
     reponse = question_resolution(question)
 
-    #si reponse correcte le joueur continue, sinon joueur suivant
+    #si reponse correcte le player continue, sinon player suivant
     if reponse.is_correct:
         return good_answer(player, is_camembert, id_theme)
 
@@ -107,10 +114,6 @@ def question_resolution(question):
     return list_answers[int(n)-1]
 
 
-def camembert_win(player, id_theme):
-    pass
-
-
 def roll_dice(player):
     input("un input pour lancer le dés")
     dice = random.randint(1,6)
@@ -126,4 +129,34 @@ def roll_dice(player):
     return((id_theme,iscamembert))
 
 
+# Logique pour finir le jeu
+def last_step(player):
+    """
+    Fonction pour gérer la dernière ligne droite du jeu.
+    """
+    print(f"C'est la dernière ligne droite pour {player.name}!")
+    # Le player doit répondre à 6 questions correctes pour gagner le jeu
+    questions_needed = 6
+    correct_answers = 0
+
+    while correct_answers < questions_needed:
+        question_choisie = random.choice(user.get_question_list(Themes.BASES_DE_DONNEES.value))  # ou autre thème 
+        print(question_choisie.text)
+
+        reponse = question_resolution(question_choisie)
+        if reponse.is_correct:
+            correct_answers += 1
+            print(f"Réponse correcte! Il reste {questions_needed - correct_answers} questions.")
+        else:
+            print("Mauvaise réponse! Le player passe au tour suivant.")
+
+    print(f"{player.name} a réussi à répondre correctement aux 6 questions! Il a gagné")
+
 new_turn()
+
+
+#
+
+
+
+
