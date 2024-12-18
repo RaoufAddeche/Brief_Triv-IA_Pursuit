@@ -140,33 +140,6 @@ def roll_dice(player):
     return((id_theme,iscamembert))
 
 
-# # Logique pour finir le jeu
-# def last_step(player):
-#     """
-#     Fonction pour gérer la dernière ligne droite du jeu.
-#     """
-#     print(f"C'est la dernière ligne droite pour {player.name}!")
-#     # Le player doit répondre à 6 questions correctes pour gagner le jeu
-#     questions_needed = 6
-#     correct_answers = 0
-
-#     while correct_answers < questions_needed:
-#         question_choisie = random.choice(user.get_question_list(Themes.BASES_DE_DONNEES.value))  # ou autre thème 
-#         print(question_choisie.text)
-
-#         reponse = question_resolution(question_choisie)
-#         if reponse.is_correct:
-#             correct_answers += 1
-#             print(f"Réponse correcte! Il reste {questions_needed - correct_answers} questions.")
-#         else:
-#             print("Mauvaise réponse! Le player passe au tour suivant.")
-
-#     print(f"{player.name} a réussi à répondre correctement aux 6 questions! Il a gagné")
-
-
-
-#
-
 def last_step(player):
     """
     Fonction pour gérer la dernière ligne droite du jeu.
