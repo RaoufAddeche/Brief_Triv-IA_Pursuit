@@ -2,6 +2,7 @@ import random
 from themes import theme_choice
 from enums import Themes
 from database_utils import DatabaseUtils
+from playermodels import Player
 
 user = DatabaseUtils()
 
@@ -56,6 +57,14 @@ def is_camembert(joueur):
     else :
         return False
 
+def update_camembert(joueur, id_theme):
+    """
+    Met à jour les camemberts du joueur s'il répond correctement à une question.
+    """
+    camembert_names = ["BASES_DE_DONNEES", "LANGAGES_DE_PROGRAMMATION", "LIGNE_DE_COMMANDES", "ACTUALITES_IA", "DEVOPS", "TECH_IA"]
+    camembert_name = camembert_names[id_theme]
+    setattr(joueur, f"camembert_{camembert_name}", True)
+
 def good_answer(joueur, iscamembert, id_theme):
     """
     If the player answer correctly, he can play again
@@ -65,9 +74,14 @@ def good_answer(joueur, iscamembert, id_theme):
     joueur.num_of_questions_with_correct_answer += 1
 
     if iscamembert:
-        if update_camembert(joueur, id_theme):
-            return
+        update_camembert(joueur, id_theme)
         
+    # Check si le joueur a tout les camemberts
+    if joueur.is_final_step():
+        print(f"{joueur.name} a tous les camemberts ! Il est maintenant dans la dernière ligne droite.")
+        # Envoie le joueur à la dernière ligne droite du jeu
+        return last_step(joueur)
+
     return new_turn(liste_joueur.index(joueur))
 
 def wrong_answer(joueur):
@@ -116,7 +130,34 @@ def question_resolution(question):
 def camembert_win(player, id_theme):
     pass
 
+# Logique pour finir le jeu
+def last_step(joueur):
+    """
+    Fonction pour gérer la dernière ligne droite du jeu.
+    """
+    print(f"C'est la dernière ligne droite pour {joueur.name}!")
+    # Le joueur doit répondre à 6 questions correctes pour gagner le jeu
+    questions_needed = 6
+    correct_answers = 0
+
+    while correct_answers < questions_needed:
+        question_choisie = random.choice(user.get_question_list(Themes.BASES_DE_DONNEES.value))  # ou autre thème 
+        print(question_choisie.text)
+
+        reponse = question_resolution(question_choisie)
+        if reponse.is_correct:
+            correct_answers += 1
+            print(f"Réponse correcte! Il reste {questions_needed - correct_answers} questions.")
+        else:
+            print("Mauvaise réponse! Le joueur passe au tour suivant.")
+
+    print(f"{joueur.name} a réussi à répondre correctement aux 6 questions! Il a gagné")
+
 new_turn()
 
 
 #
+
+
+
+

@@ -15,3 +15,12 @@ class Player(SQLModel, table=True):
     camembert_TECH_IA : bool
     
     __table_args__ = {'extend_existing': True} 
+
+    def is_final_step(self):
+        #check si le joueur a tout les camemberts
+        return (self.camembert_ACTUALITES_IA and 
+                self.camembert_BASES_DE_DONNEES and 
+                self.camembert_DEVOPS and 
+                self.camembert_LANGAGES_DE_PROGRAMMATION and 
+                self.camembert_TECH_IA and 
+                self.camembert_LIGNE_DE_COMMANDES)
