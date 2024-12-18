@@ -6,6 +6,9 @@ class Position:
         self.iscamembert = True if id%7 == 0 else False
         self.img = str(id) + ".png"
 
+    def __repr__(self):
+        return str(self.id)
+
     def move(self, dice, direction):
         """
         return id of the next position
@@ -31,4 +34,22 @@ def create_all_position():
     for i, b in enumerate(board):
         list_positions.append(Position(i,b))
     return list_positions
+
+def create_center_position():
+    """
+    create position for diagonales of the circle
+    list_center_positions = [[list of first diag], ... , [list of last diag], center_position]
+    """
+    list_center_positions = []
+    diagonale_board = [9914325,9905143,9941032,9943205,9921540,9935201]
+    for item in diagonale_board:
+        list_positions = []
+        position = str(item)
+        for i in range(5):
+            list_positions.append(Position(int(position),int(position[-1])))
+            position = position[:-1]
+        list_center_positions.append(list_positions)
+    list_center_positions.append(Position(99,7)) # center position
+    return list_center_positions
+
 
