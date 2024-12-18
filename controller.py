@@ -19,7 +19,6 @@ list_players = user.get_players()
 liste_theme = ["Bases de données", "Langages de programmation", "Ligne de commandes", "Actualités IA", "DevOps", "promo tech IA !"]
 liste_joueur = list_players
 
-
 def new_turn(index_joueur=0):
     joueur = liste_joueur[index_joueur]
     iscamembert = is_camembert(joueur)
