@@ -33,7 +33,11 @@ user.create_answer(id_question, "O2e", False)
 user.create_answer(id_question, "Mon3B", False)
 user.create_answer(id_question, "Tre", True)
 
-
+id_question= user.create_question(Themes.TECH_IA.value, "tesqjsdtL")
+user.create_answer(id_question, "1", False)
+user.create_answer(id_question, "O2e", False)
+user.create_answer(id_question, "Mon3B", False)
+user.create_answer(id_question, "Tre", True)
 
 
 list_players = user.get_players()
@@ -41,40 +45,9 @@ liste_theme = ["Bases de données", "Langages de programmation", "Ligne de comma
 liste_joueur = list_players
 
 def new_turn(index_joueur=0):
-    joueur = liste_joueur[index_joueur]
-    iscamembert = is_camembert(joueur)
-    themechoice = theme_choice()
-    print("Choisissez votre theme :")
-    print("1 pour {}".format(liste_theme[themechoice[0]]))
-    print("2 pour {}".format(liste_theme[themechoice[1]]))
-    n = choice_input()-1
-    id_theme = liste_theme.index(liste_theme[themechoice[n]])
-    return ask_Questions(joueur, iscamembert, id_theme)
+    player = liste_joueur[index_joueur]
+    return ask_questions(player)
 
-def ask_Questions(joueur, *args):
-    pass
-
-def choice_input():
-    n=0
-    while n not in ["1", "2"]:
-        try:
-            n = input()
-            if n not in ["1", "2"]:
-                raise Exception("Vous devez selectionner 1 ou 2") 
-        except:
-            print("Vous devez selectionner 1 ou 2")
-    return int(n)
-
-def is_camembert(joueur):
-    """
-    True if number of answers is a mutliple of 3
-    return : bool
-    """
-    nb_question = int(joueur.num_of_questions_with_correct_answer+joueur.num_of_questions_with_bad_answer+1)
-    if nb_question%3 == 0:
-        return True
-    else :
-        return False
 
 def good_answer(player, iscamembert, id_theme):
     """
@@ -84,41 +57,36 @@ def good_answer(player, iscamembert, id_theme):
     player.num_of_questions_with_correct_answer += 1
     if iscamembert:
         camembert_win(player, id_theme)
+    user.update_player(player)
     return new_turn(liste_joueur.index(player))
 
-def wrong_answer(joueur):
+def wrong_answer(player):
     """
     If he's wrong, next player
     """
     print("mauvaise réponse !")
-    joueur.num_of_questions_with_bad_answer += 1
-    n = (liste_joueur.index(joueur)+1)%len(liste_joueur)
+    player.num_of_questions_with_bad_answer += 1
+    user.update_player(player)
+    n = (liste_joueur.index(player)+1)%len(liste_joueur)
     return new_turn(n)
 
 
 
 # Fonction principale du jeu
-def ask_Questions(player, iscamembert, id_theme):
+def ask_questions(player):
 
     print(f"C'est au tour de {player.name}")
-    input("un input pour lancer le dés")
-    dice = random.randint(1,6)
-    r =input("voulez vous avancer dans le sens horaire (h) ou anti-horraire (a) ?" )
-    if r == "h":
-        new_position = list_positions[player.position_id].move(dice,True)
-    else:
-        new_position = list_positions[player.position_id].move(dice,False)
-    player.position_id = new_position
-    user.update_player(player)
-    id_theme = list_positions[player.position_id].theme
-    iscamembert = list_positions[player.position_id].iscamembert
+    id_theme, is_camembert = roll_dice(player)
+    while id_theme == 6:
+        print("Vous pouvez relancer le dés !")
+        id_theme, is_camembert = roll_dice(player)
 
     question = (random.choice(user.get_question_list(id_theme)))
     reponse = question_resolution(question)
 
     #si reponse correcte le joueur continue, sinon joueur suivant
     if reponse.is_correct:
-        return good_answer(player, iscamembert, id_theme)
+        return good_answer(player, is_camembert, id_theme)
 
     else:
         return wrong_answer(player)
@@ -141,5 +109,21 @@ def question_resolution(question):
 
 def camembert_win(player, id_theme):
     pass
+
+
+def roll_dice(player):
+    input("un input pour lancer le dés")
+    dice = random.randint(1,6)
+    r =input("voulez vous avancer dans le sens horaire (h) ou anti-horraire (a) ?" )
+    if r == "h":
+        new_position = list_positions[player.position_id].move(dice,True)
+    else:
+        new_position = list_positions[player.position_id].move(dice,False)
+    player.position_id = new_position
+    user.update_player(player)
+    id_theme = list_positions[player.position_id].theme
+    iscamembert = list_positions[player.position_id].iscamembert
+    return((id_theme,iscamembert))
+
 
 new_turn()
