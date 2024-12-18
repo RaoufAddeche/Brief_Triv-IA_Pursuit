@@ -60,8 +60,11 @@ class DatabaseUtils() :
     # region player
     #__________________________________________________________________________
 
+    def get_player_by_id(self, id):
+        with sm.Session(self.engine) as session:
+            return session.exec(sm.select(Player).where(Player.id_player == id)).one_or_none()
+    
     def create_player(self, id_game: int, player_name :str) :
-        player = None
         with sm.Session(self.engine) as session:
             new_player = Player(
                 name=player_name,
@@ -77,9 +80,9 @@ class DatabaseUtils() :
         
             session.add(new_player)
             session.commit()
-            player = new_player
+            player_id = new_player.id_player
             
-        return player
+        return self.get_player_by_id(player_id)
 
     #__________________________________________________________________________
     #

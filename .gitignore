@@ -166,3 +166,4 @@ cython_debug/
 # Added by Nicolas
 #______________________________________________________________________________
 triv-IA_Pursuit.db
+.vscode/
