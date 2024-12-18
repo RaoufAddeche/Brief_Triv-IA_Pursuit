@@ -13,6 +13,7 @@ class Player(SQLModel, table=True):
     camembert_ACTUALITES_IA : bool
     camembert_DEVOPS : bool
     camembert_TECH_IA : bool
+    position_id : int = Field(default=0)
     
     __table_args__ = {'extend_existing': True} 
 

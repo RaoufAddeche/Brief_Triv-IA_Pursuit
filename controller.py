@@ -2,11 +2,32 @@ import random
 from themes import theme_choice
 from enums import Themes
 from database_utils import DatabaseUtils
-from playermodels import Player
+from positions.positions import create_all_position, Position
+
+
+list_positions = create_all_position()
 
 user = DatabaseUtils()
 
 id_question= user.create_question(Themes.LANGAGES_DE_PROGRAMMATION.value, "testL")
+user.create_answer(id_question, "1", False)
+user.create_answer(id_question, "O2e", False)
+user.create_answer(id_question, "Mon3B", False)
+user.create_answer(id_question, "Tre", True)
+
+id_question= user.create_question(Themes.LIGNE_DE_COMMANDES.value, "testqsdaL")
+user.create_answer(id_question, "1", False)
+user.create_answer(id_question, "O2e", False)
+user.create_answer(id_question, "Mon3B", False)
+user.create_answer(id_question, "Tre", True)
+
+id_question= user.create_question(Themes.ACTUALITES_IA.value, "tesqjsdtL")
+user.create_answer(id_question, "1", False)
+user.create_answer(id_question, "O2e", False)
+user.create_answer(id_question, "Mon3B", False)
+user.create_answer(id_question, "Tre", True)
+
+id_question= user.create_question(Themes.DEVOPS.value, "tesqstL")
 user.create_answer(id_question, "1", False)
 user.create_answer(id_question, "O2e", False)
 user.create_answer(id_question, "Mon3B", False)
@@ -45,43 +66,18 @@ def choice_input():
             print("Vous devez selectionner 1 ou 2")
     return int(n)
 
-def is_camembert(joueur):
-    """
-    True if number of answers is a mutliple of 3
-    return : bool
-    """
-    nb_question = int(joueur.num_of_questions_with_correct_answer+joueur.num_of_questions_with_bad_answer+1)
-    if nb_question%3 == 0:
-        return True
-    else :
-        return False
 
-def update_camembert(joueur, id_theme):
-    """
-    Met à jour les camemberts du joueur s'il répond correctement à une question.
-    """
-    camembert_names = ["BASES_DE_DONNEES", "LANGAGES_DE_PROGRAMMATION", "LIGNE_DE_COMMANDES", "ACTUALITES_IA", "DEVOPS", "TECH_IA"]
-    camembert_name = camembert_names[id_theme]
-    setattr(joueur, f"camembert_{camembert_name}", True)
 
-def good_answer(joueur, iscamembert, id_theme):
+def good_answer(player, iscamembert, id_theme):
     """
     If the player answer correctly, he can play again
     """
     # if is camembert , +1 en fonction de l'id du theme et du joueur
     print("bonne réponse !")
-    joueur.num_of_questions_with_correct_answer += 1
-
+    player.num_of_questions_with_correct_answer += 1
     if iscamembert:
-        update_camembert(joueur, id_theme)
-        
-    # Check si le joueur a tout les camemberts
-    if joueur.is_final_step():
-        print(f"{joueur.name} a tous les camemberts ! Il est maintenant dans la dernière ligne droite.")
-        # Envoie le joueur à la dernière ligne droite du jeu
-        return last_step(joueur)
-
-    return new_turn(liste_joueur.index(joueur))
+        camembert_win(player, id_theme)
+    return new_turn(liste_joueur.index(player))
 
 def wrong_answer(joueur):
     """
@@ -95,20 +91,30 @@ def wrong_answer(joueur):
 
 
 # Fonction principale du jeu
-def ask_Questions(joueur, iscamembert, id_theme):
+def ask_Questions(player, iscamembert, id_theme):
 
-    print(f"C'est au tour de {joueur.name}")
-    question_choisie = random.choice(user.get_question_list(id_theme))
-    print(question_choisie.text)
+    print(f"C'est au tour de {player.name}")
+    input("un input pour lancer le dés")
+    dice = random.randint(1,6)
+    r =input("voulez vous avancer dans le sens horaire (h) ou anti-horraire (a) ?" )
+    if r == "h":
+        new_position = list_positions[player.position_id].move(dice,True)
+    else:
+        new_position = list_positions[player.position_id].move(dice,False)
+    player.position_id = new_position
+    user.update_player(player)
+    id_theme = list_positions[player.position_id].theme
+    iscamembert = list_positions[player.position_id].iscamembert
 
-    reponse = question_resolution(question_choisie)
+    question = (random.choice(user.get_question_list(id_theme)))
+    reponse = question_resolution(question)
 
     #si reponse correcte le joueur continue, sinon joueur suivant
     if reponse.is_correct:
-        return good_answer(joueur, iscamembert, id_theme)
+        return good_answer(player, iscamembert, id_theme)
 
     else:
-        return wrong_answer(joueur)
+        return wrong_answer(player)
 
 def question_resolution(question):
     list_answers = question.answers
@@ -126,8 +132,6 @@ def question_resolution(question):
     return list_answers[int(n)-1]
 
 
-def camembert_win(player, id_theme):
-    pass
 
 # Logique pour finir le jeu
 def last_step(joueur):
