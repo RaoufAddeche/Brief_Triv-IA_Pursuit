@@ -4,6 +4,7 @@ class Filenames(StrEnum):
     SQLITE_DB = "triv-IA_Pursuit.db"
 
 class Themes(Enum):
+    
     BASES_DE_DONNEES = 0
     LANGAGES_DE_PROGRAMMATION = 1
     LIGNE_DE_COMMANDES = 2

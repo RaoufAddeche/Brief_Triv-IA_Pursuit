@@ -2,11 +2,13 @@
 import sqlmodel as sm
 from sqlalchemy import Engine
 import os
+import datetime as dt
 
 import init_db as idb
 from enums import Filenames, Themes
+from typing import Optional
 
-from playermodels import Player
+from playermodels import Game, Player
 from questionmodels import Question, Answer
 
 class DatabaseUtils() :
@@ -33,17 +35,40 @@ class DatabaseUtils() :
     #
     # region game
     #__________________________________________________________________________
-    def create_game() :
-        pass
+    def create_game(self) -> int :
+        id_game = -1
+        with sm.Session(self.engine) as session:
+            new_game = Game(current_round=0, date = dt.date.today())
+            new_game.players = []
+            session.add(new_game)
+            session.commit()
+            id_game = new_game.id_game
+
+        return id_game
+    
+    def get_game(self, id_game) -> Game :
+        return_game = None
+        with sm.Session(self.engine) as session:
+            statement = sm.select(Game).where(Game.id_game==id_game)
+            results = session.exec(statement)
+            return_game = results.one()
+            return_game.players = list(return_game.players)
+            
+        return return_game
 
     #__________________________________________________________________________
     #
     # region player
     #__________________________________________________________________________
-    def create_player(self, name :str) :
+
+    def get_player_by_id(self, id) -> Optional[Player]:
+        with sm.Session(self.engine) as session:
+            return session.exec(sm.select(Player).where(Player.id_player == id)).one_or_none()
+    
+    def create_player(self, id_game: int, player_name :str) -> Optional[Player]:
         with sm.Session(self.engine) as session:
             new_player = Player(
-                name=name,
+                name=player_name,
                 num_of_questions_with_bad_answer=0,
                 num_of_questions_with_correct_answer=0,
                 camembert_BASES_DE_DONNEES=False,
@@ -51,8 +76,41 @@ class DatabaseUtils() :
                 camembert_LIGNE_DE_COMMANDES=False,
                 camembert_ACTUALITES_IA=False,
                 camembert_DEVOPS=False,
-                camembert_TECH_IA=False)
+                camembert_TECH_IA=False,
+                game_id = id_game)
+        
             session.add(new_player)
+            session.commit() 
+            player_id = new_player.id_player
+            
+        return self.get_player_by_id(player_id)
+
+
+    def get_players(self, id_game : int) -> list[Player]:
+        list_players = []
+        with sm.Session(self.engine) as session:
+            statement = sm.select(Player).where(Player.game_id==id_game)
+            results = session.exec(statement)
+            list_players = list(results)
+        return list_players
+
+    def update_player(self, player :Player) :
+        with sm.Session(self.engine) as session:
+            statement = sm.select(Player).where(Player.id_player == player.id_player)
+            results = session.exec(statement)
+            session_player = results.one()
+            session_player.name = player.name
+            session_player.num_of_questions_with_bad_answer = player.num_of_questions_with_bad_answer
+            session_player.num_of_questions_with_correct_answer = player.num_of_questions_with_correct_answer
+            session_player.camembert_BASES_DE_DONNEES = player.camembert_BASES_DE_DONNEES
+            session_player.camembert_LANGAGES_DE_PROGRAMMATION = player.camembert_LANGAGES_DE_PROGRAMMATION
+            session_player.camembert_LIGNE_DE_COMMANDES = player.camembert_LIGNE_DE_COMMANDES
+            session_player.camembert_ACTUALITES_IA = player.camembert_ACTUALITES_IA
+            session_player.camembert_DEVOPS = player.camembert_DEVOPS
+            session_player.camembert_TECH_IA = player.camembert_TECH_IA
+            session_player.game_id = player.game_id 
+        
+            session.add(session_player)
             session.commit()
 
     def get_players(self) -> list[Player]:
