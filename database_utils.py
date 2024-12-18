@@ -46,15 +46,31 @@ class DatabaseUtils() :
 
         return id_game
     
-    def get_game(self, id_game) -> Game :
+    def get_game(self, id_game : int) -> Game :
         return_game = None
         with sm.Session(self.engine) as session:
-            statement = sm.select(Game).where(Game.id_game==id_game)
-            results = session.exec(statement)
-            return_game = results.one()
-            return_game.players = list(return_game.players)
+            return_game = self.get_session_game(id_game, session)
             
         return return_game
+    
+    def get_session_game(self, id_game : int, session : sm.Session) -> Game :
+        statement = sm.select(Game).where(Game.id_game==id_game)
+        results = session.exec(statement)
+        return_game = results.one()
+        return_game.players = list(return_game.players)
+        return return_game
+    
+    def update_game(self, game : Game) :
+        with sm.Session(self.engine) as session:
+            statement = sm.select(Game).where(Game.id_game==game.id_game)
+            results = session.exec(statement)
+            session_game = results.one()
+            session_game.current_round = game.current_round
+
+            for player in game.players :
+                self.update_session_player(player, session)
+
+            session.commit()
 
     #__________________________________________________________________________
     #
@@ -94,24 +110,28 @@ class DatabaseUtils() :
             list_players = list(results)
         return list_players
 
-    def update_player(self, player :Player) :
+    def update_player(self, player :Player ) :
         with sm.Session(self.engine) as session:
-            statement = sm.select(Player).where(Player.id_player == player.id_player)
-            results = session.exec(statement)
-            session_player = results.one()
-            session_player.name = player.name
-            session_player.num_of_questions_with_bad_answer = player.num_of_questions_with_bad_answer
-            session_player.num_of_questions_with_correct_answer = player.num_of_questions_with_correct_answer
-            session_player.camembert_BASES_DE_DONNEES = player.camembert_BASES_DE_DONNEES
-            session_player.camembert_LANGAGES_DE_PROGRAMMATION = player.camembert_LANGAGES_DE_PROGRAMMATION
-            session_player.camembert_LIGNE_DE_COMMANDES = player.camembert_LIGNE_DE_COMMANDES
-            session_player.camembert_ACTUALITES_IA = player.camembert_ACTUALITES_IA
-            session_player.camembert_DEVOPS = player.camembert_DEVOPS
-            session_player.camembert_TECH_IA = player.camembert_TECH_IA
-            session_player.game_id = player.game_id 
-        
-            session.add(session_player)
+            self.update_session_player(player, session)
             session.commit()
+
+
+    def update_session_player(self, player :Player, session : sm.Session ) :
+        statement = sm.select(Player).where(Player.id_player == player.id_player)
+        results = session.exec(statement)
+        session_player = results.one()
+        session_player.name = player.name
+        session_player.num_of_questions_with_bad_answer = player.num_of_questions_with_bad_answer
+        session_player.num_of_questions_with_correct_answer = player.num_of_questions_with_correct_answer
+        session_player.camembert_BASES_DE_DONNEES = player.camembert_BASES_DE_DONNEES
+        session_player.camembert_LANGAGES_DE_PROGRAMMATION = player.camembert_LANGAGES_DE_PROGRAMMATION
+        session_player.camembert_LIGNE_DE_COMMANDES = player.camembert_LIGNE_DE_COMMANDES
+        session_player.camembert_ACTUALITES_IA = player.camembert_ACTUALITES_IA
+        session_player.camembert_DEVOPS = player.camembert_DEVOPS
+        session_player.camembert_TECH_IA = player.camembert_TECH_IA
+        session_player.game_id = player.game_id 
+    
+        session.add(session_player)   
 
     def get_players(self) -> list[Player]:
         list_players = []
