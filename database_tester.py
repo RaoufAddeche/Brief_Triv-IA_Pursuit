@@ -5,6 +5,10 @@ from question_data import QuestionData
 
 if __name__ == "__main__" :
 
+    # from enums import Themes
+    # camembert_names = list(map( lambda t : str(t).removeprefix('Themes.'), Themes))
+    # print(camembert_names) 
+
     question_data = QuestionData()
     #question_data.question_export("all_data.json")
 
