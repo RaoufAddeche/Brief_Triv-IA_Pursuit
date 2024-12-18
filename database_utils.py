@@ -115,7 +115,6 @@ class DatabaseUtils() :
             self.update_session_player(player, session)
             session.commit()
 
-
     def update_session_player(self, player :Player, session : sm.Session ) :
         statement = sm.select(Player).where(Player.id_player == player.id_player)
         results = session.exec(statement)
@@ -143,22 +142,8 @@ class DatabaseUtils() :
     
     def update_player(self, player:Player):
         with sm.Session(self.engine) as session:
-            statement = sm.select(Player).where(player.id_player == Player.id_player)
-            session_player = session.exec(statement).one()
-            session_player.name = player.name
-            session_player.num_of_questions_with_bad_answer = player.num_of_questions_with_bad_answer
-            session_player.num_of_questions_with_correct_answer = player.num_of_questions_with_correct_answer
-            session_player.camembert_BASES_DE_DONNEES = player.camembert_BASES_DE_DONNEES
-            session_player.camembert_LANGAGES_DE_PROGRAMMATION = player.camembert_LANGAGES_DE_PROGRAMMATION
-            session_player.camembert_LIGNE_DE_COMMANDES = player.camembert_LIGNE_DE_COMMANDES
-            session_player.camembert_ACTUALITES_IA = player.camembert_ACTUALITES_IA
-            session_player.camembert_DEVOPS = player.camembert_DEVOPS
-            session_player.camembert_TECH_IA = player.camembert_TECH_IA
-            session.add(session_player)
+            self.update_session_player(player, session)
             session.commit()
-
-            
-
 
     #__________________________________________________________________________
     #
