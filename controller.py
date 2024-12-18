@@ -42,17 +42,7 @@ liste_joueur = list_players
 
 def new_turn(index_joueur=0):
     joueur = liste_joueur[index_joueur]
-    iscamembert = is_camembert(joueur)
-    themechoice = theme_choice()
-
-    print("Choisissez votre theme :")
-    print("1 pour {}".format(liste_theme[themechoice[0]]))
-    print("2 pour {}".format(liste_theme[themechoice[1]]))
-    n = choice_input()-1
-    id_theme = liste_theme.index(liste_theme[themechoice[n]])
-
-    return ask_Questions(joueur, iscamembert, id_theme)
-
+    return ask_Questions(joueur)
 
 
 def choice_input():
@@ -91,7 +81,7 @@ def wrong_answer(joueur):
 
 
 # Fonction principale du jeu
-def ask_Questions(player, iscamembert, id_theme):
+def ask_Questions(player):
 
     print(f"C'est au tour de {player.name}")
     input("un input pour lancer le dés")
@@ -152,7 +142,7 @@ def last_step(joueur):
             correct_answers += 1
             print(f"Réponse correcte! Il reste {questions_needed - correct_answers} questions.")
         else:
-            print("Mauvaise réponse! Le joueur passe au tour suivant.")
+            print("Mauvaise réponse!")
 
     print(f"{joueur.name} a réussi à répondre correctement aux 6 questions! Il a gagné")
 
@@ -160,7 +150,4 @@ new_turn()
 
 
 #
-
-
-
 
