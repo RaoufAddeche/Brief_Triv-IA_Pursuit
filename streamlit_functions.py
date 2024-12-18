@@ -5,7 +5,7 @@ def display_game_state_sidebar() -> None:
     """
     Display the current game state in the sidebar
     """
-       
+    
     with st.sidebar:
         for player in st.session_state.player_list:
             st.subheader(player.name)

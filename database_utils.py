@@ -6,6 +6,7 @@ import datetime as dt
 
 import init_db as idb
 from enums import Filenames, Themes
+from typing import Optional
 
 from playermodels import Game, Player
 from questionmodels import Question, Answer
@@ -60,8 +61,11 @@ class DatabaseUtils() :
     # region player
     #__________________________________________________________________________
 
-    def create_player(self, id_game: int, player_name :str) :
-        player = None
+    def get_player_by_id(self, id) -> Optional[Player]:
+        with sm.Session(self.engine) as session:
+            return session.exec(sm.select(Player).where(Player.id_player == id)).one_or_none()
+    
+    def create_player(self, id_game: int, player_name :str) -> Optional[Player]:
         with sm.Session(self.engine) as session:
             new_player = Player(
                 name=player_name,
@@ -77,9 +81,9 @@ class DatabaseUtils() :
         
             session.add(new_player)
             session.commit() 
-            player = new_player
+            player_id = new_player.id_player
             
-        return player
+        return self.get_player_by_id(player_id)
 
 
     def get_players(self, id_game : int) -> list[Player]:
