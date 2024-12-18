@@ -17,6 +17,10 @@ class Position:
             return (self.id + dice)%42
         else:
             return (self.id - dice)%42
+        
+    def move_to_win(self):
+        position = str(self.id)
+        return int(position[:-1])
 
 
 def create_all_position():

@@ -54,6 +54,8 @@ def wrong_answer(player):
 def ask_questions(player):
 
     print(f"C'est au tour de {player.name}")
+    if player.is_final_step():
+        last_step(player)
     id_theme, is_camembert = roll_dice(player)
     while id_theme == 6:
         print("Vous pouvez relancer le dés !")
