@@ -37,17 +37,17 @@ def display_game_state_sidebar() -> None:
 def get_camemberts(player: Player):
     result = []
     if player.camembert_ACTUALITES_IA:
-        result.append("pictures/pink_cam.png")
+        result.append("pictures/violet_cam.png")
     if player.camembert_BASES_DE_DONNEES:
         result.append("pictures/orange_cam.png")
     if player.camembert_DEVOPS:
-        result.append("pictures/yellow_cam.png")
+        result.append("pictures/red_cam.png")
     if player.camembert_LANGAGES_DE_PROGRAMMATION:
         result.append("pictures/green_cam.png")
     if player.camembert_LIGNE_DE_COMMANDES:
         result.append("pictures/blue_cam.png")
     if player.camembert_TECH_IA:
-        result.append("pictures/brown_cam.png")
+        result.append("pictures/rainbow_cam.png")
     
     if len(result) == 6:
         return ["pictures/full_wheel.png"]
