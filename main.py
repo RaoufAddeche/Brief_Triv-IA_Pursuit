@@ -6,7 +6,7 @@ import database_utils as db
 import controller as ctrl
 from enums import Themes
 import time
-from positions import create_all_position
+from positions import create_all_position, create_center_position
 
 #region Init
 #Intialization and script resets
@@ -20,7 +20,9 @@ if "game_state" not in st.session_state:
     #game_step = 1 : choose direction
     #game_step = 2 : show question
     #game_step = 3 : correct answer
-    #game_step = 4 : bad arect answer   
+    #game_step = 4 : bad arect answer  
+    #game_step = 5 : final test 
+    #game_step = 6 : final test is valid
     st.session_state.game_step = -1
     st.session_state.player_count = 1     
     st.session_state.current_player = 0 
@@ -40,6 +42,11 @@ if "game_state" not in st.session_state:
     st.session_state.current_question = None
     
     st.session_state.board = create_all_position()
+    st.session_state.center_board = create_center_position()
+    
+    st.session_state.create_final_test = False
+    st.session_state.final_test_questions = []
+    st.session_state.final_test_questions_answers_texts = []
 
 if st.session_state.reset_game:
     st.session_state.player_count = 1
@@ -47,6 +54,9 @@ if st.session_state.reset_game:
     st.session_state.reset_game = False
     st.session_state.current_player = 0 
     st.session_state.game_step = -1
+    st.session_state.create_final_test = False
+    st.session_state.final_test_questions = []
+    st.session_state.final_test_questions_answers_texts = []
     
 #___________________________
 
@@ -120,29 +130,48 @@ if st.session_state.game_state == 1:
             st.rerun()
         case 0:
             st.header(f":green[{st.session_state.player_list[st.session_state.current_player].name}], c'est votre tour ! :sunglasses:")
-            st.image(f"positions/{st.session_state.player_list[st.session_state.current_player].position_id}.png", caption="Votre position.", width=350)
+            st.image(f"positions/{current_player().position_id}.png", caption="Votre position.", width=350)
             
-            if st.session_state.dice_anim:                     
-                while True:
-                    r = randint(1,6)
-                    if r != st.session_state.last_dice_frame:
-                        st.session_state.last_dice_frame = r
+            if current_player().position_id == 99:
+                if st.button(":green[Test final !]"):
+                    st.session_state.game_step = 5
+                    st.session_state.create_final_test = True
+                    st.rerun()
+            
+            elif current_player().is_final_step():
+                if st.button("Case suivante"):
+                    st.session_state.game_step = 2
+                    pos = ctrl.streamlit_found_diag_position(current_player(), st.session_state.board, st.session_state.center_board)
+                    st.session_state.current_question_index = randint(0, len(st.session_state[f"questions_{pos.theme}"])-1)
+                    st.session_state.current_question = st.session_state[f"questions_{pos.theme}"][st.session_state.current_question_index]
+                    st.session_state[f"questions_{pos.theme}"].pop(st.session_state.current_question_index)
+                    if len(st.session_state[f"questions_{pos.theme}"]) == 0:
+                        st.session_state[f"questions_{pos.theme}"] = st.session_state.db.get_question_list(pos.theme)
+                    st.rerun()
+            else:
+                if st.session_state.dice_anim:                     
+                    while True:
+                        r = randint(1,1)
+                        st.session_state.last_dice_frame = 1
                         break
-                st.image(f"pictures/dice/{st.session_state.last_dice_frame}.png")
-                time.sleep(0.12)
-                st.session_state.timer -= 1
-                if st.session_state.timer <= 0:
-                    st.session_state.dice_anim = False
-                    st.session_state.game_step = 1
-                    st.session_state.dice_outcomes = ctrl.get_possible_move(st.session_state.board[current_player().position_id], st.session_state.last_dice_frame)
-                    st.session_state.current_moves = [st.session_state.board[st.session_state.dice_outcomes[0]], st.session_state.board[st.session_state.dice_outcomes[1]]]
-                st.rerun()                  
-            else:                
-                if st.button("Lancer le dé"):
-                    st.audio("sounds/dice_roll.mp3",autoplay=True,)
-                    st.session_state.dice_anim = True
-                    st.session_state.timer = 10 
-                    st.rerun()  
+                        if r != st.session_state.last_dice_frame:
+                            st.session_state.last_dice_frame = r
+                            break
+                    st.image(f"pictures/dice/{st.session_state.last_dice_frame}.png")
+                    time.sleep(0.12)
+                    st.session_state.timer -= 1
+                    if st.session_state.timer <= 0:
+                        st.session_state.dice_anim = False
+                        st.session_state.game_step = 1
+                        st.session_state.dice_outcomes = ctrl.get_possible_move(st.session_state.board[current_player().position_id], st.session_state.last_dice_frame)
+                        st.session_state.current_moves = [st.session_state.board[st.session_state.dice_outcomes[0]], st.session_state.board[st.session_state.dice_outcomes[1]]]
+                    st.rerun()                  
+                else:                
+                    if st.button("Lancer le dé"):
+                        st.audio("sounds/dice_roll.mp3",autoplay=True,)
+                        st.session_state.dice_anim = True
+                        st.session_state.timer = 10 
+                        st.rerun()  
       
         case 1:
             st.header(f":green[{st.session_state.player_list[st.session_state.current_player].name}], faites votre choix ! :game_die:")
@@ -183,14 +212,18 @@ if st.session_state.game_state == 1:
             
             answer_texts = [i.text for i in st.session_state.current_question.answers]
             
-            radio_answers = st.radio("", answer_texts)
+            radio_answers = st.radio("radio", answer_texts, label_visibility="collapsed")
                         
             if st.button("Valider la réponse"):
                 if st.session_state.current_question.answers[answer_texts.index(radio_answers)].is_correct :
                     current_player().num_of_questions_with_correct_answer += 1
-                    if st.session_state.current_pos.iscamembert:
+                    if st.session_state.current_pos.iscamembert and not current_player().is_final_step():
                         ctrl.update_camembert(current_player(), st.session_state.current_pos.theme)
                         st.session_state.balloons = True
+                    if current_player().is_final_step and current_player().position_id > 41:
+                        position = ctrl.streamlit_found_diag_position(current_player(), st.session_state.board, st.session_state.center_board)
+                        new_position = position.move_to_win()
+                        current_player().position_id = new_position
                     st.session_state.game_step = 3
                 else:
                     current_player().num_of_questions_with_bad_answer += 1
@@ -204,6 +237,10 @@ if st.session_state.game_state == 1:
             if st.session_state.balloons:
                 st.session_state.balloons = False
                 st.balloons()
+                if current_player().is_final_step() and current_player().position_id <= 41:
+                    st.write()
+                    st.write(f"Bravo, :green[{current_player().name}], vous avez obtenu tous les camemberts ! :cheese_wedge: ")
+                    current_player().position_id = st.session_state.center_board[int(current_player().position_id/7)][0].id
             if st.button("Rejouer."):
                 st.session_state.game_step = 0
                 st.rerun()
@@ -214,6 +251,59 @@ if st.session_state.game_state == 1:
                 st.session_state.game_step = 0
                 next_player()
                 st.rerun()
+        
+        case 5:
+            if st.session_state.create_final_test:
+                st.session_state.create_final_test = False
+                st.session_state.final_test_questions = []
+                
+                for x in range (0, 6):
+                    st.session_state.current_question_index = randint(0, len(st.session_state[f"questions_{x}"])-1)
+                    question = st.session_state[f"questions_{x}"][st.session_state.current_question_index]
+                    st.session_state[f"questions_{x}"].pop(st.session_state.current_question_index)
+                    if len(st.session_state[f"questions_{x}"]) == 0:
+                        st.session_state[f"questions_{x}"] = st.session_state.db.get_question_list(x)
+                    st.session_state.final_test_questions.append(question)
+                    st.session_state.final_test_questions_answers_texts.append([i.text for i in question.answers])
+            
+            x = 0
+            for question in st.session_state.final_test_questions:
+                st.header(question.text)
+                
+                st.radio("", st.session_state.final_test_questions_answers_texts[x], key=f"final_answers_{x}")
+                
+                st.divider()
+                
+                x+=1
+                            
+            if st.button("Valider les réponses"):
+                is_won = True
+                for x in range(0, 6):
+                    if not st.session_state.final_test_questions[x].answers[st.session_state.final_test_questions_answers_texts[x].index(st.session_state[f"final_answers_{x}"])].is_correct :
+                        is_won = False
+                        current_player().num_of_questions_with_bad_answer += 1
+                        break
+                    else:
+                        current_player().num_of_questions_with_correct_answer += 1
+                
+                if is_won:
+                    st.session_state.game_step = 6
+                else:
+                    st.session_state.game_step = 4
+                
+                
+                st.rerun()
+        
+        case 6:
+           st.balloons()
+           st.header(f"BRAVO :green[{current_player().name}], C'EST GAGNE !!")
+           st.image("pictures/lepers_ouioui.gif")
+           st.audio("sounds/lepers_ouioui.mp3", autoplay=True)
+           st.session_state.game_state = 2
+
+#region Game State 2
+if st.session_state.game_state == 2:
+    st.header("RESULTATS DE LA PARTIE")
            
                 
             

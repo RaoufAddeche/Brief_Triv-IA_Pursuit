@@ -30,7 +30,9 @@ class Position:
             return (self.id - dice)%42
         
     def move_to_win(self):
+        print("DEBUG : ", self.id)
         position = str(self.id)
+        print("DEBUG :", position[:-1])
         return int(position[:-1])
 
 
