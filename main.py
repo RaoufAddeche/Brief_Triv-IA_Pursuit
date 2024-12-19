@@ -16,7 +16,7 @@ if "game_state" not in st.session_state:
     #game_state = 1 : game play
     st.session_state.game_state = 0    
     #game_step = -1 : initialization
-    #game_step = 0 : before throw die or next playe
+    #game_step = 0 : before throw die or next player
     #game_step = 1 : choose direction
     #game_step = 2 : show question
     #game_step = 3 : correct answer
@@ -151,9 +151,7 @@ if st.session_state.game_state == 1:
             else:
                 if st.session_state.dice_anim:                     
                     while True:
-                        r = randint(1,1)
-                        st.session_state.last_dice_frame = 1
-                        break
+                        r = randint(1,6)
                         if r != st.session_state.last_dice_frame:
                             st.session_state.last_dice_frame = r
                             break
