@@ -3,6 +3,7 @@ from playermodels import Game, Player
 from enums import Themes
 from typing import cast
 from database_utils import DatabaseUtils
+from playermodels import Player
 from controller import cheat_get_all_camemberts
 
 def display_game_state_sidebar() -> None:
@@ -12,8 +13,9 @@ def display_game_state_sidebar() -> None:
     
     with st.sidebar:
         x = 0
-        for player in st.session_state.player_list:
+        if st.session_state.game_state == 1:
             st.subheader("Round " + str(st.session_state.current_game.current_round))
+        for player in st.session_state.player_list:            
             if st.session_state.current_player == x:
                 st.subheader(f":green[{player.name}]")
             else:
@@ -35,6 +37,9 @@ def display_game_state_sidebar() -> None:
         if st.button("DEBUG : 6 :cheese_wedge:"):
             cheat_get_all_camemberts(current_player())
             st.rerun()
+            
+        if st.button("TEST CENTRE"):
+            cheat_test_all_camemberts()
 
         st.divider()
 
@@ -109,17 +114,17 @@ def display_game_state_sidebar() -> None:
 def get_camemberts(player: Player):
     result = []
     if player.camembert_ACTUALITES_IA:
-        result.append("pictures/pink_cam.png")
+        result.append("pictures/violet_cam.png")
     if player.camembert_BASES_DE_DONNEES:
         result.append("pictures/orange_cam.png")
     if player.camembert_DEVOPS:
-        result.append("pictures/yellow_cam.png")
+        result.append("pictures/red_cam.png")
     if player.camembert_LANGAGES_DE_PROGRAMMATION:
         result.append("pictures/green_cam.png")
     if player.camembert_LIGNE_DE_COMMANDES:
         result.append("pictures/blue_cam.png")
     if player.camembert_TECH_IA:
-        result.append("pictures/brown_cam.png")
+        result.append("pictures/rainbow_cam.png")
     
     if len(result) == 6:
         return ["pictures/full_wheel.png"]
@@ -132,7 +137,7 @@ def next_player():
         st.session_state.current_player = 0
         st.session_state.current_game.current_round += 1
         
-def current_player():
+def current_player() -> Player:
     return st.session_state[f"player_{st.session_state.current_player}"]
 
 def return_dice_outcomes():
@@ -163,3 +168,10 @@ def return_theme_string(theme_id):
             return ":rainbow[Tech IA 6]"
         case 6:
             return "Relance !"
+    
+def cheat_test_all_camemberts():
+    cheat_get_all_camemberts(current_player())
+    current_player().camembert_BASES_DE_DONNEES = False
+    current_player().position_id = 1
+    st.session_state.game_step = 0
+    st.rerun()

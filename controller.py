@@ -54,6 +54,19 @@ def found_diag_position(player : Player):
             if player.position_id == position:
                 return position
 
+def streamlit_found_diag_position(player : Player, outter_positions: list[Position], center_positions: list[list]):
+    """
+    return Position object
+    """
+    if player.position_id < 42:
+        print("ligne 48 : ", player.position_id)
+        return outter_positions[player.position_id]
+    print("ligne 50 : ", player.position_id)
+    for item in center_positions[:-1]:
+        for position in item:
+            if player.position_id == position:
+                return position
+
 
 def update_camembert(player, id_theme):
     """
@@ -85,8 +98,6 @@ def ask_questions(player):
     print(f"C'est au tour de {player.name}")
     print(player.position_id)
     print(player.is_final_step())
-    for item in camembert_names:
-        print(getattr(list_players[0], f"camembert_{item}"))
     if player.is_final_step():
         position = found_diag_position(player)
         id_theme = position.theme
