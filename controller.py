@@ -2,8 +2,9 @@ import random
 from themes import theme_choice
 from enums import Themes
 from database_utils import DatabaseUtils
-from positions.positions import create_all_position, Position
+from positions.positions import create_all_position, Position, create_center_position
 from playermodels import Player
+from enums import Themes
 
 
 def new_turn(index_player=0):
@@ -23,17 +24,42 @@ def good_answer(player, iscamembert, id_theme):
         
     # Check si le player a tout les camemberts
     if player.is_final_step():
-        print(f"{player.name} a tous les camemberts ! Il est maintenant dans la dernière ligne droite.")
-        # Envoie le player à la dernière ligne droite du jeu
-        return last_step(player)
+        print('YOUHOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU')
+        if player.position_id == 99: # si le joueur est au centre
+            print(f"{player.name} a tous les camemberts ! Il est maintenant dans la dernière ligne droite.")
+            # Envoie le player à la dernière ligne droite du jeu
+            return last_step(player)
+        elif player.position_id < 42: # si le joueur est sur le cercle
+            position = list_diag_positions[int(player.position_id/7)][0]
+            player.position_id = position.id
+        else: # si le joueur est sur la diagonale
+            position = found_diag_position(player)
+            new_position = position.move_to_win()
+            player.position_id = new_position
+
+            
     user.update_player(player)
     return new_turn(list_players.index(player))
+
+def found_diag_position(player : Player):
+    """
+    return Position object
+    """
+    if player.position_id < 42:
+        print("ligne 48 : ", player.position_id)
+        return list_positions[player.position_id]
+    print("ligne 50 : ", player.position_id)
+    for item in list_diag_positions[:-1]:
+        for position in item:
+            if player.position_id == position:
+                return position
+
 
 def update_camembert(player, id_theme):
     """
     Met à jour les camemberts du joueur s'il répond correctement à une question.
     """
-    camembert_names = ["BASES_DE_DONNEES", "LANGAGES_DE_PROGRAMMATION", "LIGNE_DE_COMMANDES", "ACTUALITES_IA", "DEVOPS", "TECH_IA"]
+    camembert_names = list(map( lambda t : str(t).removeprefix('Themes.'), Themes))
     camembert_name = camembert_names[id_theme]
     setattr(player, f"camembert_{camembert_name}", True)
 
@@ -54,12 +80,19 @@ def wrong_answer(player):
 def ask_questions(player):
 
     print(f"C'est au tour de {player.name}")
+    print(player.position_id)
+    print(player.is_final_step())
+    for item in camembert_names:
+        print(getattr(list_players[0], f"camembert_{item}"))
     if player.is_final_step():
-        last_step(player)
-    id_theme, is_camembert = roll_dice(player)
-    while id_theme == 6:
-        print("Vous pouvez relancer le dés !")
+        position = found_diag_position(player)
+        id_theme = position.theme
+        is_camembert = False
+    else :
         id_theme, is_camembert = roll_dice(player)
+        while id_theme == 6:
+            print("Vous pouvez relancer le dés !")
+            id_theme, is_camembert = roll_dice(player)
     
     if is_camembert:
         print("c'est un camembert")
@@ -76,6 +109,7 @@ def ask_questions(player):
 
 def question_resolution(question):
     list_answers = question.answers
+    print(question.text)
     for i, answer in enumerate(list_answers):
         print(f"choix {i+1} : {answer.text} ")
     
@@ -99,6 +133,7 @@ def roll_dice(player):
     else:
         new_position = list_positions[player.position_id].move(dice,False)
     player.position_id = new_position
+    print(player.position_id, "hop2")
     user.update_player(player)
     id_theme = list_positions[player.position_id].theme
     iscamembert = list_positions[player.position_id].iscamembert
@@ -110,6 +145,7 @@ def last_step(player):
     Fonction pour gérer la dernière ligne droite du jeu.
     """
     print(f"C'est la dernière ligne droite pour {player.name}!")
+    print(player.position_id)
     remaining_question = 6
     themes = ["BASES_DE_DONNEES", "LANGAGES_DE_PROGRAMMATION", "LIGNE_DE_COMMANDES", "ACTUALITES_IA", "DEVOPS", "TECH_IA"]
 
@@ -135,11 +171,25 @@ def last_step(player):
         print("Le joueur a reussi a répondre aux 6 questions, il remporte la partie")
         return True
 
+# from typing import cast
 
 if __name__ == "__main__":
     list_positions = create_all_position()
+    list_diag_positions = create_center_position()
     user = DatabaseUtils()
-    list_players = user.get_players()
+    camembert_names = list(map( lambda t : str(t).removeprefix('Themes.'), Themes))
+    id_game = user.create_game()
+    user.create_player(id_game, "winner")
+    user.create_player(id_game, "Raouf")
+    list_players = user.get_players(id_game)
+    # for player in list_players :
+    #     if player.name == "Winner" :
+    #         player = cast(Player, player).
+    for item in camembert_names:
+        setattr(list_players[0], f"camembert_{item}", True)
+    user.update_player(list_players[0])
+    list_players = user.get_players(id_game)
     list_player = list_players
+    print(list(map( lambda t : str(t).removeprefix('Themes.'), Themes)))
     new_turn()
 

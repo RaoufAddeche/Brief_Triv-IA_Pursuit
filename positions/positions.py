@@ -7,7 +7,18 @@ class Position:
         self.img = str(id) + ".png"
 
     def __repr__(self):
-        return str(self.id)
+        return "position : " + str(self.id)
+    
+    
+    def __eq__(self, other):
+        if isinstance(other, int):
+            return self.id == other
+        return False
+
+    def __lt__(self, other):
+        if isinstance(other, int):
+            return self.id < other
+        return False
 
     def move(self, dice, direction):
         """
@@ -56,4 +67,7 @@ def create_center_position():
     list_center_positions.append(Position(99,7)) # center position
     return list_center_positions
 
-
+if __name__ == "__main__":
+    l1=create_center_position()
+    print(l1[0][0]<32)
+    print(l1[0][0] == 32)

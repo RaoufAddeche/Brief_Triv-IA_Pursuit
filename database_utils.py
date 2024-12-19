@@ -113,13 +113,6 @@ class DatabaseUtils() :
             session.add(session_player)
             session.commit()
 
-    def get_players(self) -> list[Player]:
-        list_players = []
-        with sm.Session(self.engine) as session:
-            statement = sm.select(Player)
-            results = session.exec(statement)
-            list_players = list(results)
-        return list_players
     
     def update_player(self, player:Player):
         with sm.Session(self.engine) as session:
