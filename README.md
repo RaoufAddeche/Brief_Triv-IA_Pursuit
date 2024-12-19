@@ -1,19 +1,47 @@
-# Brief_Triv-IA_Pursuit
+# <p align="center">Brief_Triv-IA_Pursuit</p>
+<p align="center">
+    <img src="pictures/Trivia.png" alt="triv-IA">
+</p>
 
-## Instalation :
+Inspired by the famous game Trivial Pursuit, Triv-IA Pursuit is an interactive question game designed to test and reinforce skills acquired during training. Players advance in the game by rolling dice and answering questions from several thematic categories.
+
+## ➤ Menu
+
+* [➤ Installation](#-Installation)
+* [➤ Play !](#-play-!)
+
+## Installation :
 
 #### Create the virtual environment
 
-- `cd /path/to/BRIEF_TRIV-IA_PURSUIT`
-- `python -m venv .venv`
-- Activate environment `source venv/bin/activate`
+```bash
+cd /path/to/BRIEF_TRIV-IA_PURSUIT
+
+python -m venv .venv
+
+source venv/bin/activate
+```
+
+
+#### Install requirements :
+
+```bash
+pip install -r requirements.txt
+```
 
 #### Init data base :
 
-- `python database_tester.py`
+
+```bash
+python database_tester.py
+```
+
 
 #### Run sreamlit :
 
-- `streamlit run main.py`
+```bash
+streamlit run main.py
+```
 
-#### Play !
+
+### Play !
