@@ -38,7 +38,7 @@ class DatabaseUtils() :
     def create_game(self) -> int :
         id_game = -1
         with sm.Session(self.engine) as session:
-            new_game = Game(current_round=1, date = dt.date.today())
+            new_game = Game(current_round=1, current_player_id=-1, date = dt.date.today())
             new_game.players = []
             session.add(new_game)
             session.commit()
@@ -53,6 +53,17 @@ class DatabaseUtils() :
             
         return return_game
     
+    def get_game_list(self) -> list[Game] :
+        return_value = []
+        with sm.Session(self.engine) as session:
+            statement = sm.select(Game)
+            results = session.exec(statement)
+            return_value = list(results)
+            for game in return_value :
+                game.players = list(game.players)
+
+        return return_value
+    
     def get_session_game(self, id_game : int, session : sm.Session) -> Game :
         statement = sm.select(Game).where(Game.id_game==id_game)
         results = session.exec(statement)
@@ -66,6 +77,7 @@ class DatabaseUtils() :
             results = session.exec(statement)
             session_game = results.one()
             session_game.current_round = game.current_round
+            session_game.current_player_id = game.current_player_id
 
             for player in game.players :
                 self.update_session_player(player, session)
@@ -129,9 +141,9 @@ class DatabaseUtils() :
         session_player.camembert_DEVOPS = player.camembert_DEVOPS
         session_player.camembert_TECH_IA = player.camembert_TECH_IA
         session_player.game_id = player.game_id 
+        session_player.position_id = player.position_id
     
         session.add(session_player)   
-
     
     def update_player(self, player:Player):
         with sm.Session(self.engine) as session:

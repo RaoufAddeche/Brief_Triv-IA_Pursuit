@@ -70,6 +70,4 @@ def create_center_position():
     return list_center_positions
 
 if __name__ == "__main__":
-    l1=create_center_position()
-    print(l1[0][0]<32)
-    print(l1[0][0] == 32)
+    print(create_center_position())

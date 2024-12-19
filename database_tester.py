@@ -6,7 +6,7 @@ from question_data import QuestionData
 if __name__ == "__main__" :
 
     question_data = QuestionData()
-    #question_data.question_export("all_data.json")
+    question_data.question_export("all_data.json")
 
     user = DatabaseUtils()
     user.create_database(True)
