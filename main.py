@@ -151,9 +151,7 @@ if st.session_state.game_state == 1:
             else:
                 if st.session_state.dice_anim:                     
                     while True:
-                        r = randint(1,1)
-                        st.session_state.last_dice_frame = 1
-                        break
+                        r = randint(1,6)
                         if r != st.session_state.last_dice_frame:
                             st.session_state.last_dice_frame = r
                             break
