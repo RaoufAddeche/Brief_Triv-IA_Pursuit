@@ -1,5 +1,4 @@
 import random
-from themes import theme_choice
 from enums import Themes
 from database_utils import DatabaseUtils
 from positions import create_all_position, Position, create_center_position
@@ -12,44 +11,39 @@ def new_turn(index_player=0):
     return ask_questions(player)
 
 
-def good_answer(player, iscamembert, id_theme):
+def good_answer(player: Player, iscamembert: bool, id_theme: int) :
     """
     If the player answer correctly, he can play again
     """
-    # if is camembert , +1 en fonction de l'id du theme et du player
     print("bonne réponse !")
-    player.num_of_questions_with_correct_answer += 1
+    player.num_of_questions_with_correct_answer += 1 # update stats
     if iscamembert:
-        update_camembert(player, id_theme)
+        update_camembert(player, id_theme) # add coresponding camembert
         
-    # Check si le player a tout les camemberts
-    if player.is_final_step():
-        print('YOUHOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU')
+    if player.is_final_step(): # If the player have all camemberts
         if player.position_id == 99: # si le joueur est au centre
             print(f"{player.name} a tous les camemberts ! Il est maintenant dans la dernière ligne droite.")
-            # Envoie le player à la dernière ligne droite du jeu
-            return last_step(player)
+            return last_step(player) # Envoie le player à la dernière ligne droite du jeu
         elif player.position_id < 42: # si le joueur est sur le cercle
-            position = list_diag_positions[int(player.position_id/7)][0]
+            position = list_diag_positions[int(player.position_id/7)][0] # recupère la première position dans la diagonale correspondante
             player.position_id = position.id
         else: # si le joueur est sur la diagonale
-            position = found_diag_position(player)
+            position = found_diag_position(player) # recupère l'objet Position correspondant à la position
             new_position = position.move_to_win()
             player.position_id = new_position
 
-            
-    user.update_player(player)
+    user.update_player(player) # sauvegarde dans la db, vraiment necessaire ?
     return new_turn(list_players.index(player))
 
-def found_diag_position(player : Player):
+def found_diag_position(player : Player) -> Position:
     """
-    return Position object
+    return Position object from the id_position of the player
     """
-    if player.position_id < 42:
-        print("ligne 48 : ", player.position_id)
+    if player.position_id < 42: # Si le joueur est sur l'exterieur
         return list_positions[player.position_id]
-    print("ligne 50 : ", player.position_id)
-    for item in list_diag_positions[:-1]:
+    elif player.position_id == 99: # Si le joueur est sur la case centrale
+        return list_diag_positions[-1]
+    for item in list_diag_positions[:-1]: # si le joueur est sur une diagonale
         for position in item:
             if player.position_id == position:
                 return position
@@ -68,7 +62,7 @@ def streamlit_found_diag_position(player : Player, outter_positions: list[Positi
                 return position
 
 
-def update_camembert(player, id_theme):
+def update_camembert(player : Player, id_theme : int):
     """
     Met à jour les camemberts du joueur s'il répond correctement à une question.
     """
@@ -99,6 +93,8 @@ def ask_questions(player):
     print(player.position_id)
     print(player.is_final_step())
     if player.is_final_step():
+        if player.position_id == 99:
+            return last_step(player)
         position = found_diag_position(player)
         id_theme = position.theme
         is_camembert = False
@@ -168,19 +164,17 @@ def last_step(player):
 
     for item in themes:
         theme_name = item
+        print(f"Il reste {remaining_question} questions.")
         remaining_question = remaining_question -1
         theme_id = Themes[theme_name].value # obtenir l'id depuis l'enum
         question_choisie = random.choice(user.get_question_list(theme_id))
 
         print(f"question du theme {theme_name}:")
-        print(question_choisie.text)
-
-
 
 
         reponse = question_resolution(question_choisie)
         if reponse.is_correct:
-            print(f"Réponse correcte! Il reste {remaining_question -1} questions.")
+            print("Réponse correcte!")
         else:
             print("Mauvaise réponse! Le player passe au tour suivant.")
             return wrong_answer(player)
