@@ -85,7 +85,7 @@ if st.session_state.game_state == 0:
         if name_validation:
             
             id_game = st.session_state.db.create_game()
-            st.session_state.game_id = id_game
+            st.session_state.current_game = st.session_state.db.get_game(id_game)
             
             for x in range(0, st.session_state.player_count):
                 st.session_state[f"player_{x}"] = st.session_state.db.create_player(id_game, st.session_state[f"player_name_{x}"])
@@ -99,7 +99,6 @@ if st.session_state.game_state == 0:
 display_game_state_sidebar()
 
 #region Game State 1
-
 
 if st.session_state.game_state == 1:
     match st.session_state.game_step:

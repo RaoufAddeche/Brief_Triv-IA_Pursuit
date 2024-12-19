@@ -38,7 +38,7 @@ class DatabaseUtils() :
     def create_game(self) -> int :
         id_game = -1
         with sm.Session(self.engine) as session:
-            new_game = Game(current_round=0, date = dt.date.today())
+            new_game = Game(current_round=1, date = dt.date.today())
             new_game.players = []
             session.add(new_game)
             session.commit()

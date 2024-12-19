@@ -1,6 +1,7 @@
 import streamlit as st
 from playermodels import Player
 from enums import Themes
+from controller import cheat_get_all_camemberts
 
 def display_game_state_sidebar() -> None:
     """
@@ -10,12 +11,15 @@ def display_game_state_sidebar() -> None:
     with st.sidebar:
         x = 0
         for player in st.session_state.player_list:
+            st.subheader("Round " + str(st.session_state.current_game.current_round))
             if st.session_state.current_player == x:
                 st.subheader(f":green[{player.name}]")
             else:
                 st.subheader(player.name)
             st.image(get_camemberts(player), width=40)
             x += 1
+        
+        st.divider()
         
         if st.button("DEBUG : Return to game_state 0"):
             st.session_state.game_state = 0
@@ -24,6 +28,10 @@ def display_game_state_sidebar() -> None:
         
         if st.button("DEBUG : Return to game_state 1"):
             st.session_state.game_state = 1
+            st.rerun()
+            
+        if st.button("DEBUG : 6 :cheese_wedge:"):
+            cheat_get_all_camemberts(current_player())
             st.rerun()
 
 def get_camemberts(player: Player):
@@ -50,6 +58,7 @@ def next_player():
     st.session_state.current_player += 1
     if st.session_state.current_player >= len(st.session_state.player_list):
         st.session_state.current_player = 0
+        st.session_state.current_game.current_round += 1
         
 def current_player():
     return st.session_state[f"player_{st.session_state.current_player}"]

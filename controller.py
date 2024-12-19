@@ -36,6 +36,9 @@ def update_camembert(player, id_theme):
     camembert_name = camembert_names[id_theme]
     setattr(player, f"camembert_{camembert_name}", True)
 
+def cheat_get_all_camemberts(player):
+    for x in range (0, 6):
+        update_camembert(player, x)
 
 def wrong_answer(player):
     """
@@ -170,8 +173,6 @@ if __name__ == "__main__":
     
     new_turn()
 
-
-#
 
 
 
