@@ -20,7 +20,7 @@ class Position:
             return self.id < other
         return False
 
-    def move(self, dice, direction):
+    def move(self, dice, clockwork_dir):
         """
         return id of the next position
         """

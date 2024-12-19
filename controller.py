@@ -2,7 +2,7 @@ import random
 from themes import theme_choice
 from enums import Themes
 from database_utils import DatabaseUtils
-from positions.positions import create_all_position, Position, create_center_position
+from positions import create_all_position, Position, create_center_position
 from playermodels import Player
 from enums import Themes
 
