@@ -6,7 +6,7 @@ import datetime as dt
 class Game(SQLModel, table=True):
     id_game: Optional[int] = Field(default=None, primary_key=True)
 
-    current_round : int 
+    current_round : int = Field(default=1)
     date : dt.datetime
 
     players : list["Player"]= Relationship(back_populates="game") 

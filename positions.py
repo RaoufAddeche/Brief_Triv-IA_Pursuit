@@ -24,7 +24,7 @@ class Position:
         """
         return id of the next position
         """
-        if direction:
+        if clockwork_dir:
             return (self.id + dice)%42
         else:
             return (self.id - dice)%42

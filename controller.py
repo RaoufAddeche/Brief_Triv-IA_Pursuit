@@ -63,6 +63,9 @@ def update_camembert(player, id_theme):
     camembert_name = camembert_names[id_theme]
     setattr(player, f"camembert_{camembert_name}", True)
 
+def cheat_get_all_camemberts(player):
+    for x in range (0, 6):
+        update_camembert(player, x)
 
 def wrong_answer(player):
     """
@@ -139,6 +142,9 @@ def roll_dice(player):
     iscamembert = list_positions[player.position_id].iscamembert
     return((id_theme,iscamembert))
 
+def get_possible_move(current_pos, dice_roll):
+    return (current_pos.move(dice_roll, True), current_pos.move(dice_roll, False))    
+
 
 def last_step(player):
     """
@@ -192,4 +198,8 @@ if __name__ == "__main__":
     list_player = list_players
     print(list(map( lambda t : str(t).removeprefix('Themes.'), Themes)))
     new_turn()
+
+
+
+
 
