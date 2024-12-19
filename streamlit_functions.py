@@ -1,6 +1,8 @@
 import streamlit as st
-from playermodels import Player
+from playermodels import Game, Player
 from enums import Themes
+from typing import cast
+from database_utils import DatabaseUtils
 from controller import cheat_get_all_camemberts
 
 def display_game_state_sidebar() -> None:
@@ -33,6 +35,76 @@ def display_game_state_sidebar() -> None:
         if st.button("DEBUG : 6 :cheese_wedge:"):
             cheat_get_all_camemberts(current_player())
             st.rerun()
+
+        st.divider()
+
+        if st.session_state.get("game_state") == 1 :
+            if st.button("Sauver cette partie"):
+                current_game  = st.session_state.get("current_game")
+                player_list  = st.session_state.get("player_list")
+                if current_game != None and player_list != None :
+                    # st.write("current game = ")
+                    # st.write(current_game)
+                    # st.write(player_list)
+
+                    current_game = cast(Game, current_game)
+                
+                    player_list = cast(list[Player], player_list)
+                    current_game.players = player_list
+                   
+                    actual_player = current_player()
+
+                    actual_player = cast(Player, actual_player)
+                    current_game.current_player_id = actual_player.id_player
+
+                    db_methods = DatabaseUtils()
+                    db_methods.update_game(current_game)
+
+        if st.button("Charger une partie"):
+            st.session_state["load_game_mode"] = True
+            st.rerun()
+
+        if st.session_state.get("load_game_mode") == True :
+            db_methods = DatabaseUtils()
+            games = db_methods.get_game_list()
+            options_ids = {}
+            options_ids[""] = -1
+            for game in games :
+                option = game.date.strftime("%d %b %Y")
+                option += " :"
+                for player in game.players :
+                    option += " " +player.name
+
+                options_ids[option] = game.id_game
+
+            selected_option = st.selectbox("Laquelle ?", options_ids)
+            selected_game_id = options_ids[selected_option]
+            if selected_game_id != -1 :
+                st.session_state["load_game_mode"] = False 
+                selected_game = next(filter(lambda g : g.id_game == selected_game_id, games))
+                selected_game = cast(Game, selected_game)
+                #st.write(selected_game)
+                st.session_state["current_game"] = selected_game
+                n = len(selected_game.players)
+                st.session_state["player_count"] = n
+                player_list = []
+                selected_player_index = 0 # if no selection, the first one
+                for i in range(0,n) :
+                    loop_player = selected_game.players[i]
+                    st.session_state[f"player_{i}"] = loop_player
+                    player_list.append(loop_player)
+                    if loop_player.id_player == selected_game.current_player_id :
+                        selected_player_index = i
+
+                st.session_state["player_list"] = player_list
+                st.session_state["current_player"] = selected_player_index
+                st.session_state["game_state"] = 1
+                st.session_state["game_step"] = -1
+                st.rerun()                    
+                
+
+                    
+                    
 
 def get_camemberts(player: Player):
     result = []

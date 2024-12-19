@@ -7,6 +7,7 @@ class Game(SQLModel, table=True):
     id_game: Optional[int] = Field(default=None, primary_key=True)
 
     current_round : int = Field(default=1)
+    current_player_id : int = Field(default=-1)
     date : dt.date = Field(default=dt.date(1999, 12, 31))
 
     players : list["Player"]= Relationship(back_populates="game") 
