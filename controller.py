@@ -85,8 +85,6 @@ def ask_questions(player):
     print(f"C'est au tour de {player.name}")
     print(player.position_id)
     print(player.is_final_step())
-    for item in camembert_names:
-        print(getattr(list_players[0], f"camembert_{item}"))
     if player.is_final_step():
         position = found_diag_position(player)
         id_theme = position.theme
