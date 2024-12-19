@@ -2,49 +2,13 @@ import random
 from themes import theme_choice
 from enums import Themes
 from database_utils import DatabaseUtils
-from positions.positions import create_all_position, Position
+from positions import create_all_position, Position, create_center_position
 from playermodels import Player
+from enums import Themes
 
-list_positions = create_all_position()
-user = DatabaseUtils()
-
-id_question= user.create_question(Themes.LANGAGES_DE_PROGRAMMATION.value, "testL")
-user.create_answer(id_question, "1", False)
-user.create_answer(id_question, "O2e", False)
-user.create_answer(id_question, "Mon3B", False)
-user.create_answer(id_question, "Tre", True)
-
-id_question= user.create_question(Themes.LIGNE_DE_COMMANDES.value, "testqsdaL")
-user.create_answer(id_question, "1", False)
-user.create_answer(id_question, "O2e", False)
-user.create_answer(id_question, "Mon3B", False)
-user.create_answer(id_question, "Tre", True)
-
-id_question= user.create_question(Themes.ACTUALITES_IA.value, "tesqjsdtL")
-user.create_answer(id_question, "1", False)
-user.create_answer(id_question, "O2e", False)
-user.create_answer(id_question, "Mon3B", False)
-user.create_answer(id_question, "Tre", True)
-
-id_question= user.create_question(Themes.DEVOPS.value, "tesqstL")
-user.create_answer(id_question, "1", False)
-user.create_answer(id_question, "O2e", False)
-user.create_answer(id_question, "Mon3B", False)
-user.create_answer(id_question, "Tre", True)
-
-id_question= user.create_question(Themes.TECH_IA.value, "tesqjsdtL")
-user.create_answer(id_question, "1", False)
-user.create_answer(id_question, "O2e", False)
-user.create_answer(id_question, "Mon3B", False)
-user.create_answer(id_question, "Tre", True)
-
-
-list_players = user.get_players()
-liste_theme = ["Bases de données", "Langages de programmation", "Ligne de commandes", "Actualités IA", "DevOps", "promo tech IA !"]
-liste_player = list_players
 
 def new_turn(index_player=0):
-    player = liste_player[index_player]
+    player = list_players[index_player]
     return ask_questions(player)
 
 
@@ -60,20 +24,48 @@ def good_answer(player, iscamembert, id_theme):
         
     # Check si le player a tout les camemberts
     if player.is_final_step():
-        print(f"{player.name} a tous les camemberts ! Il est maintenant dans la dernière ligne droite.")
-        # Envoie le player à la dernière ligne droite du jeu
-        return last_step(player)
+        if player.position_id == 99: # si le joueur est au centre
+            print(f"{player.name} a tous les camemberts ! Il est maintenant dans la dernière ligne droite.")
+            # Envoie le player à la dernière ligne droite du jeu
+            return last_step(player)
+        elif player.position_id < 42: # si le joueur est sur le cercle
+            position = list_diag_positions[int(player.position_id/7)][0]
+            player.position_id = position.id
+        else: # si le joueur est sur la diagonale
+            position = found_diag_position(player)
+            new_position = position.move_to_win()
+            player.position_id = new_position
+
+            
     user.update_player(player)
-    return new_turn(liste_player.index(player))
+    return new_turn(list_players.index(player))
+
+def found_diag_position(player : Player):
+    """
+    return Position object
+    """
+    if player.position_id < 42:
+        print("ligne 48 : ", player.position_id)
+        return list_positions[player.position_id]
+    elif player.position_id == 99:
+        return list_diag_positions[-1]
+    for item in list_diag_positions[:-1]:
+        for position in item:
+            if player.position_id == position:
+                return position
+
 
 def update_camembert(player, id_theme):
     """
     Met à jour les camemberts du joueur s'il répond correctement à une question.
     """
-    camembert_names = ["BASES_DE_DONNEES", "LANGAGES_DE_PROGRAMMATION", "LIGNE_DE_COMMANDES", "ACTUALITES_IA", "DEVOPS", "TECH_IA"]
+    camembert_names = list(map( lambda t : str(t).removeprefix('Themes.'), Themes))
     camembert_name = camembert_names[id_theme]
     setattr(player, f"camembert_{camembert_name}", True)
 
+def cheat_get_all_camemberts(player):
+    for x in range (0, 6):
+        update_camembert(player, x)
 
 def wrong_answer(player):
     """
@@ -82,7 +74,7 @@ def wrong_answer(player):
     print("mauvaise réponse !")
     player.num_of_questions_with_bad_answer += 1
     user.update_player(player)
-    n = (liste_player.index(player)+1)%len(liste_player)
+    n = (list_players.index(player)+1)%len(list_players)
     return new_turn(n)
 
 
@@ -91,10 +83,19 @@ def wrong_answer(player):
 def ask_questions(player):
 
     print(f"C'est au tour de {player.name}")
-    id_theme, is_camembert = roll_dice(player)
-    while id_theme == 6:
-        print("Vous pouvez relancer le dés !")
+    print(player.position_id)
+    print(player.is_final_step())
+    if player.is_final_step():
+        if player.position_id == 99:
+            return last_step(player)
+        position = found_diag_position(player)
+        id_theme = position.theme
+        is_camembert = False
+    else :
         id_theme, is_camembert = roll_dice(player)
+        while id_theme == 6:
+            print("Vous pouvez relancer le dés !")
+            id_theme, is_camembert = roll_dice(player)
     
     if is_camembert:
         print("c'est un camembert")
@@ -111,6 +112,7 @@ def ask_questions(player):
 
 def question_resolution(question):
     list_answers = question.answers
+    print(question.text)
     for i, answer in enumerate(list_answers):
         print(f"choix {i+1} : {answer.text} ")
     
@@ -134,62 +136,38 @@ def roll_dice(player):
     else:
         new_position = list_positions[player.position_id].move(dice,False)
     player.position_id = new_position
+    print(player.position_id, "hop2")
     user.update_player(player)
     id_theme = list_positions[player.position_id].theme
     iscamembert = list_positions[player.position_id].iscamembert
     return((id_theme,iscamembert))
 
+def get_possible_move(current_pos, dice_roll):
+    return (current_pos.move(dice_roll, True), current_pos.move(dice_roll, False))    
 
-# # Logique pour finir le jeu
-# def last_step(player):
-#     """
-#     Fonction pour gérer la dernière ligne droite du jeu.
-#     """
-#     print(f"C'est la dernière ligne droite pour {player.name}!")
-#     # Le player doit répondre à 6 questions correctes pour gagner le jeu
-#     questions_needed = 6
-#     correct_answers = 0
-
-#     while correct_answers < questions_needed:
-#         question_choisie = random.choice(user.get_question_list(Themes.BASES_DE_DONNEES.value))  # ou autre thème 
-#         print(question_choisie.text)
-
-#         reponse = question_resolution(question_choisie)
-#         if reponse.is_correct:
-#             correct_answers += 1
-#             print(f"Réponse correcte! Il reste {questions_needed - correct_answers} questions.")
-#         else:
-#             print("Mauvaise réponse! Le player passe au tour suivant.")
-
-#     print(f"{player.name} a réussi à répondre correctement aux 6 questions! Il a gagné")
-
-
-
-#
 
 def last_step(player):
     """
     Fonction pour gérer la dernière ligne droite du jeu.
     """
     print(f"C'est la dernière ligne droite pour {player.name}!")
+    print(player.position_id)
     remaining_question = 6
     themes = ["BASES_DE_DONNEES", "LANGAGES_DE_PROGRAMMATION", "LIGNE_DE_COMMANDES", "ACTUALITES_IA", "DEVOPS", "TECH_IA"]
 
     for item in themes:
         theme_name = item
+        print(f"Il reste {remaining_question} questions.")
         remaining_question = remaining_question -1
         theme_id = Themes[theme_name].value # obtenir l'id depuis l'enum
         question_choisie = random.choice(user.get_question_list(theme_id))
 
         print(f"question du theme {theme_name}:")
-        print(question_choisie.text)
-
-
 
 
         reponse = question_resolution(question_choisie)
         if reponse.is_correct:
-            print(f"Réponse correcte! Il reste {remaining_question -1} questions.")
+            print("Réponse correcte!")
         else:
             print("Mauvaise réponse! Le player passe au tour suivant.")
             return wrong_answer(player)
@@ -197,4 +175,29 @@ def last_step(player):
         print("Le joueur a reussi a répondre aux 6 questions, il remporte la partie")
         return True
 
-last_step(liste_player[0])
+# from typing import cast
+
+if __name__ == "__main__":
+    list_positions = create_all_position()
+    list_diag_positions = create_center_position()
+    user = DatabaseUtils()
+    camembert_names = list(map( lambda t : str(t).removeprefix('Themes.'), Themes))
+    id_game = user.create_game()
+    user.create_player(id_game, "winner")
+    user.create_player(id_game, "Raouf")
+    list_players = user.get_players(id_game)
+    # for player in list_players :
+    #     if player.name == "Winner" :
+    #         player = cast(Player, player).
+    for item in camembert_names:
+        setattr(list_players[0], f"camembert_{item}", True)
+    user.update_player(list_players[0])
+    list_players = user.get_players(id_game)
+    list_player = list_players
+    print(list(map( lambda t : str(t).removeprefix('Themes.'), Themes)))
+    new_turn()
+
+
+
+
+

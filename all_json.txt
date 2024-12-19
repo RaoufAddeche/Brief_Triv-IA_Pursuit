@@ -1,0 +1,306 @@
+[
+    {
+      "theme": 0,
+      "intitule": "Quelle commande SQL permet de supprimer une ligne dans une table ?",
+      "réponse_1": "DELETE",
+      "bonne_reponse_1": true,
+      "réponse_2": "DROP",
+      "bonne_reponse_2": false,
+      "réponse_3": "REMOVE",
+      "bonne_reponse_3": false,
+      "réponse_4": "ERASE",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 0,
+      "intitule": "Quelle clause est utilisée pour spécifier une condition dans une requête SELECT ?",
+      "réponse_1": "WHERE",
+      "bonne_reponse_1": true,
+      "réponse_2": "HAVING",
+      "bonne_reponse_2": false,
+      "réponse_3": "GROUP BY",
+      "bonne_reponse_3": false,
+      "réponse_4": "FILTER",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 0,
+      "intitule": "Quelle fonction SQL retourne la valeur maximale d'une colonne ?",
+      "réponse_1": "MAX()",
+      "bonne_reponse_1": true,
+      "réponse_2": "MIN()",
+      "bonne_reponse_2": false,
+      "réponse_3": "TOP()",
+      "bonne_reponse_3": false,
+      "réponse_4": "HIGH()",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 0,
+      "intitule": "Quelle commande SQL permet de renommer une table existante ?",
+      "réponse_1": "RENAME TABLE",
+      "bonne_reponse_1": true,
+      "réponse_2": "ALTER NAME",
+      "bonne_reponse_2": false,
+      "réponse_3": "CHANGE NAME",
+      "bonne_reponse_3": false,
+      "réponse_4": "MODIFY TABLE",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 0,
+      "intitule": "Quel type de jointure retourne uniquement les lignes correspondantes des deux tables ?",
+      "réponse_1": "INNER JOIN",
+      "bonne_reponse_1": true,
+      "réponse_2": "FULL JOIN",
+      "bonne_reponse_2": false,
+      "réponse_3": "LEFT JOIN",
+      "bonne_reponse_3": false,
+      "réponse_4": "OUTER JOIN",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 0,
+      "intitule": "Quelle fonction SQL permet de calculer la moyenne d'une colonne ?",
+      "réponse_1": "AVG()",
+      "bonne_reponse_1": true,
+      "réponse_2": "MEAN()",
+      "bonne_reponse_2": false,
+      "réponse_3": "SUM()",
+      "bonne_reponse_3": false,
+      "réponse_4": "MEDIAN()",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 0,
+      "intitule": "Quelle commande est utilisée pour ajouter une nouvelle colonne dans une table SQL ?",
+      "réponse_1": "ALTER TABLE ... ADD",
+      "bonne_reponse_1": true,
+      "réponse_2": "INSERT COLUMN",
+      "bonne_reponse_2": false,
+      "réponse_3": "UPDATE TABLE",
+      "bonne_reponse_3": false,
+      "réponse_4": "NEW COLUMN",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 0,
+      "intitule": "Quelle contrainte SQL est utilisée pour définir une clé étrangère ?",
+      "réponse_1": "FOREIGN KEY",
+      "bonne_reponse_1": true,
+      "réponse_2": "PRIMARY KEY",
+      "bonne_reponse_2": false,
+      "réponse_3": "UNIQUE",
+      "bonne_reponse_3": false,
+      "réponse_4": "INDEX",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 0,
+      "intitule": "Quelle clause SQL est utilisée pour regrouper les résultats d'une requête SELECT ?",
+      "réponse_1": "GROUP BY",
+      "bonne_reponse_1": true,
+      "réponse_2": "ORDER BY",
+      "bonne_reponse_2": false,
+      "réponse_3": "WHERE",
+      "bonne_reponse_3": false,
+      "réponse_4": "HAVING",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 0,
+      "intitule": "Quel type de données est utilisé pour stocker des valeurs de type texte dans SQL ?",
+      "réponse_1": "VARCHAR",
+      "bonne_reponse_1": true,
+      "réponse_2": "INT",
+      "bonne_reponse_2": false,
+      "réponse_3": "FLOAT",
+      "bonne_reponse_3": false,
+      "réponse_4": "BOOLEAN",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 0,
+      "intitule": "Quelle commande SQL est utilisée pour mettre à jour des données existantes dans une table ?",
+      "réponse_1": "UPDATE",
+      "bonne_reponse_1": true,
+      "réponse_2": "MODIFY",
+      "bonne_reponse_2": false,
+      "réponse_3": "ALTER",
+      "bonne_reponse_3": false,
+      "réponse_4": "REPLACE",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 0,
+      "intitule": "Quel mot-clé est utilisé pour trier les données par ordre croissant dans une requête SQL ?",
+      "réponse_1": "ASC",
+      "bonne_reponse_1": true,
+      "réponse_2": "ORDER",
+      "bonne_reponse_2": false,
+      "réponse_3": "SORT",
+      "bonne_reponse_3": false,
+      "réponse_4": "INCR",
+      "bonne_reponse_4": false
+    }
+  ]
+
+    
+  [
+    {"theme": 1, "intitule": "Quelle est la fonction principale pour afficher du texte en Python?", "réponse_1": "print()", "bonne_reponse_1": true, "réponse_2": "echo()", "bonne_reponse_2": false, "réponse_3": "display()", "bonne_reponse_3": false, "réponse_4": "show()", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Quelle extension est utilisée pour un fichier Python?", "réponse_1": ".txt", "bonne_reponse_1": false, "réponse_2": ".py", "bonne_reponse_2": true, "réponse_3": ".java", "bonne_reponse_3": false, "réponse_4": ".html", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Comment définir une fonction en Python?", "réponse_1": "function ma_fonction():", "bonne_reponse_1": false, "réponse_2": "def ma_fonction():", "bonne_reponse_2": true, "réponse_3": "define ma_fonction():", "bonne_reponse_3": false, "réponse_4": "func ma_fonction():", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Quel mot-clé est utilisé pour créer une boucle en Python?", "réponse_1": "for", "bonne_reponse_1": true, "réponse_2": "repeat", "bonne_reponse_2": false, "réponse_3": "while", "bonne_reponse_3": true, "réponse_4": "loop", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Quelle fonction permet d'obtenir la longueur d'une liste?", "réponse_1": "size()", "bonne_reponse_1": false, "réponse_2": "len()", "bonne_reponse_2": true, "réponse_3": "count()", "bonne_reponse_3": false, "réponse_4": "length()", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Comment ajouter un élément à la fin d'une liste?", "réponse_1": "append()", "bonne_reponse_1": true, "réponse_2": "add()", "bonne_reponse_2": false, "réponse_3": "push()", "bonne_reponse_3": false, "réponse_4": "insert()", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Quelle est la sortie de 3 * 2 ** 2 en Python?", "réponse_1": "12", "bonne_reponse_1": true, "réponse_2": "18", "bonne_reponse_2": false, "réponse_3": "9", "bonne_reponse_3": false, "réponse_4": "6", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Comment commenter une ligne en Python?", "réponse_1": "// Commentaire", "bonne_reponse_1": false, "réponse_2": "# Commentaire", "bonne_reponse_2": true, "réponse_3": "-- Commentaire", "bonne_reponse_3": false, "réponse_4": "/* Commentaire */", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Quel type de variable est renvoyé par input()?", "réponse_1": "int", "bonne_reponse_1": false, "réponse_2": "float", "bonne_reponse_2": false, "réponse_3": "str", "bonne_reponse_3": true, "réponse_4": "bool", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Quelle méthode permet de convertir une chaîne en majuscules?", "réponse_1": "upper()", "bonne_reponse_1": true, "réponse_2": "capitalize()", "bonne_reponse_2": false, "réponse_3": "toupper()", "bonne_reponse_3": false, "réponse_4": "uppercase()", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Quel opérateur est utilisé pour la division entière?", "réponse_1": "/", "bonne_reponse_1": false, "réponse_2": "//", "bonne_reponse_2": true, "réponse_3": "%", "bonne_reponse_3": false, "réponse_4": "**", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Comment supprimer une clé d'un dictionnaire?", "réponse_1": "del", "bonne_reponse_1": true, "réponse_2": "remove()", "bonne_reponse_2": false, "réponse_3": "pop()", "bonne_reponse_3": true, "réponse_4": "delete()", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Quel type de boucle exécute tant qu'une condition est vraie?", "réponse_1": "for", "bonne_reponse_1": false, "réponse_2": "while", "bonne_reponse_2": true, "réponse_3": "until", "bonne_reponse_3": false, "réponse_4": "loop", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Quelle fonction permet de trier une liste?", "réponse_1": "sort()", "bonne_reponse_1": true, "réponse_2": "sorted()", "bonne_reponse_2": true, "réponse_3": "order()", "bonne_reponse_3": false, "réponse_4": "arrange()", "bonne_reponse_4": false},
+  
+    {"theme": 1, "intitule": "Quelle est la valeur de 5 % 2?", "réponse_1": "2", "bonne_reponse_1": false, "réponse_2": "3", "bonne_reponse_2": false, "réponse_3": "1", "bonne_reponse_3": true, "réponse_4": "0", "bonne_reponse_4": false}
+  ]
+  
+  [
+    {"theme": 2, "intitule": "Quelle commande permet de lister les fichiers dans un dossier Unix ?", "réponse_1": "ls", "bonne_reponse_1": true, "réponse_2": "cd", "bonne_reponse_2": false, "réponse_3": "pwd", "bonne_reponse_3": false, "réponse_4": "mkdir", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Quelle commande permet de créer un répertoire ?", "réponse_1": "mkdir", "bonne_reponse_1": true, "réponse_2": "rmdir", "bonne_reponse_2": false, "réponse_3": "touch", "bonne_reponse_3": false, "réponse_4": "cp", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Comment afficher le chemin absolu du répertoire courant ?", "réponse_1": "pwd", "bonne_reponse_1": true, "réponse_2": "ls", "bonne_reponse_2": false, "réponse_3": "cd", "bonne_reponse_3": false, "réponse_4": "echo", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Quelle commande permet de supprimer un fichier ?", "réponse_1": "rm", "bonne_reponse_1": true, "réponse_2": "rmdir", "bonne_reponse_2": false, "réponse_3": "mv", "bonne_reponse_3": false, "réponse_4": "cp", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Quelle commande permet de changer de répertoire ?", "réponse_1": "cd", "bonne_reponse_1": true, "réponse_2": "ls", "bonne_reponse_2": false, "réponse_3": "mkdir", "bonne_reponse_3": false, "réponse_4": "rm", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Quelle commande permet de copier un fichier ?", "réponse_1": "cp", "bonne_reponse_1": true, "réponse_2": "mv", "bonne_reponse_2": false, "réponse_3": "rm", "bonne_reponse_3": false, "réponse_4": "touch", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Quelle commande permet de renommer un fichier ?", "réponse_1": "mv", "bonne_reponse_1": true, "réponse_2": "cp", "bonne_reponse_2": false, "réponse_3": "rename", "bonne_reponse_3": false, "réponse_4": "rm", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Quelle commande affiche les premières lignes d'un fichier ?", "réponse_1": "head", "bonne_reponse_1": true, "réponse_2": "tail", "bonne_reponse_2": false, "réponse_3": "cat", "bonne_reponse_3": false, "réponse_4": "grep", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Quelle commande permet d'afficher le contenu d'un fichier ?", "réponse_1": "cat", "bonne_reponse_1": true, "réponse_2": "head", "bonne_reponse_2": false, "réponse_3": "tail", "bonne_reponse_3": false, "réponse_4": "cp", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Comment lister les fichiers avec des détails comme la taille et la date ?", "réponse_1": "ls -l", "bonne_reponse_1": true, "réponse_2": "ls -a", "bonne_reponse_2": false, "réponse_3": "ls", "bonne_reponse_3": false, "réponse_4": "pwd", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Quelle commande permet de chercher un motif dans un fichier ?", "réponse_1": "grep", "bonne_reponse_1": true, "réponse_2": "find", "bonne_reponse_2": false, "réponse_3": "sed", "bonne_reponse_3": false, "réponse_4": "awk", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Comment créer un fichier vide ?", "réponse_1": "touch", "bonne_reponse_1": true, "réponse_2": "mkdir", "bonne_reponse_2": false, "réponse_3": "rm", "bonne_reponse_3": false, "réponse_4": "echo", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Quelle commande affiche la fin d'un fichier ?", "réponse_1": "tail", "bonne_reponse_1": true, "réponse_2": "head", "bonne_reponse_2": false, "réponse_3": "cat", "bonne_reponse_3": false, "réponse_4": "less", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Quelle commande permet de trouver des fichiers dans un répertoire ?", "réponse_1": "find", "bonne_reponse_1": true, "réponse_2": "grep", "bonne_reponse_2": false, "réponse_3": "ls", "bonne_reponse_3": false, "réponse_4": "pwd", "bonne_reponse_4": false},
+  
+    {"theme": 2, "intitule": "Comment voir l'historique des commandes utilisées ?", "réponse_1": "history", "bonne_reponse_1": true, "réponse_2": "echo", "bonne_reponse_2": false, "réponse_3": "grep", "bonne_reponse_3": false, "réponse_4": "ps", "bonne_reponse_4": false}
+  ]
+
+  [
+    {"theme": 3, "intitule": "Quelle entreprise a lancé le modèle GPT-4 en 2023 ?", 
+      "réponse_1": "OpenAI", "bonne_reponse_1": true, 
+      "réponse_2": "Google", "bonne_reponse_2": false, 
+      "réponse_3": "Meta", "bonne_reponse_3": false, 
+      "réponse_4": "Amazon", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quel outil d'IA a été interdit dans plusieurs écoles en raison de craintes de tricherie ?", 
+      "réponse_1": "Bard", "bonne_reponse_1": false, 
+      "réponse_2": "ChatGPT", "bonne_reponse_2": true, 
+      "réponse_3": "Claude", "bonne_reponse_3": false, 
+      "réponse_4": "Copilot", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quelle entreprise a introduit le modèle LLaMA pour la recherche en IA ?", 
+      "réponse_1": "Meta", "bonne_reponse_1": true, 
+      "réponse_2": "Microsoft", "bonne_reponse_2": false, 
+      "réponse_3": "Anthropic", "bonne_reponse_3": false, 
+      "réponse_4": "Apple", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quelle fonction principale propose l'outil MidJourney ?", 
+      "réponse_1": "Création de texte", "bonne_reponse_1": false, 
+      "réponse_2": "Analyse de données", "bonne_reponse_2": false, 
+      "réponse_3": "Génération d'images", "bonne_reponse_3": true, 
+      "réponse_4": "Traduction automatique", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quelle IA a été développée pour concurrencer ChatGPT par Google ?", 
+      "réponse_1": "Gemini", "bonne_reponse_1": true, 
+      "réponse_2": "Claude", "bonne_reponse_2": false, 
+      "réponse_3": "LLaMA", "bonne_reponse_3": false, 
+      "réponse_4": "Watson", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quel pays a proposé un règlement pour encadrer l'utilisation de l'IA en Europe ?", 
+      "réponse_1": "France", "bonne_reponse_1": false, 
+      "réponse_2": "Royaume-Uni", "bonne_reponse_2": false, 
+      "réponse_3": "Union Européenne", "bonne_reponse_3": true, 
+      "réponse_4": "Allemagne", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quel type d'IA est utilisé dans les voitures autonomes ?", 
+      "réponse_1": "IA générative", "bonne_reponse_1": false, 
+      "réponse_2": "IA symbolique", "bonne_reponse_2": false, 
+      "réponse_3": "IA embarquée", "bonne_reponse_3": true, 
+      "réponse_4": "IA musicale", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quel modèle de langage a atteint un milliard d'utilisateurs en 2023 ?", 
+      "réponse_1": "Claude", "bonne_reponse_1": false, 
+      "réponse_2": "ChatGPT", "bonne_reponse_2": true, 
+      "réponse_3": "Bard", "bonne_reponse_3": false, 
+      "réponse_4": "Watson", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quel acteur majeur a acheté DeepMind en 2014 ?", 
+      "réponse_1": "Google", "bonne_reponse_1": true, 
+      "réponse_2": "Microsoft", "bonne_reponse_2": false, 
+      "réponse_3": "Meta", "bonne_reponse_3": false, 
+      "réponse_4": "Apple", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quelle IA est conçue spécialement pour la sécurité et la surveillance ?", 
+      "réponse_1": "Palantir", "bonne_reponse_1": true, 
+      "réponse_2": "MidJourney", "bonne_reponse_2": false, 
+      "réponse_3": "DALL-E", "bonne_reponse_3": false, 
+      "réponse_4": "Claude", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quelle IA peut générer du code informatique sur demande ?", 
+      "réponse_1": "ChatGPT", "bonne_reponse_1": false, 
+      "réponse_2": "GitHub Copilot", "bonne_reponse_2": true, 
+      "réponse_3": "DALL-E", "bonne_reponse_3": false, 
+      "réponse_4": "Watson", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quelle technologie est utilisée pour l'entraînement des IA génératives ?", 
+      "réponse_1": "Machine Learning", "bonne_reponse_1": true, 
+      "réponse_2": "Algorithmes de tri", "bonne_reponse_2": false, 
+      "réponse_3": "Blockchain", "bonne_reponse_3": false, 
+      "réponse_4": "Compression de données", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quel secteur bénéficie fortement des IA comme Stable Diffusion ?", 
+      "réponse_1": "Industrie textile", "bonne_reponse_1": false, 
+      "réponse_2": "Santé", "bonne_reponse_2": false, 
+      "réponse_3": "Création artistique", "bonne_reponse_3": true, 
+      "réponse_4": "Transport", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quel outil IA peut produire des synthèses vocales de haute qualité ?", 
+      "réponse_1": "DeepVoice", "bonne_reponse_1": true, 
+      "réponse_2": "MidJourney", "bonne_reponse_2": false, 
+      "réponse_3": "OpenGPT", "bonne_reponse_3": false, 
+      "réponse_4": "Bard", "bonne_reponse_4": false
+    },
+    {"theme": 3, "intitule": "Quel défi éthique majeur concerne l'usage des IA dans le domaine créatif ?", 
+      "réponse_1": "Les droits d'auteur", "bonne_reponse_1": true, 
+      "réponse_2": "La stabilité des serveurs", "bonne_reponse_2": false, 
+      "réponse_3": "La régulation de l'air", "bonne_reponse_3": false, 
+      "réponse_4": "La portabilité des données", "bonne_reponse_4": false
+    }
+  ]
+  
+  
