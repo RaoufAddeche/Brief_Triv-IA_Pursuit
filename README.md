@@ -7,8 +7,8 @@ Inspired by the famous game Trivial Pursuit, Triv-IA Pursuit is an interactive q
 
 ## ➤ Menu
 
-* [➤ Installation](#-Installation)
-* [➤ Play !](#-play-!)
+* [➤ Installation](#installation-)
+* [➤ Play !](#play-)
 
 ## Installation :
 
