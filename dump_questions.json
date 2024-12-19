@@ -1,0 +1,123 @@
+[
+    {
+      "theme": 4,
+      "intitule": "Quel est le principal objectif du DevOps ?",
+      "réponse_1": "Améliorer la communication entre les équipes de développement et d'opérations",
+      "bonne_reponse_1": true,
+      "réponse_2": "Réduire les coûts de matériel informatique",
+      "bonne_reponse_2": false,
+      "réponse_3": "Augmenter le nombre de développeurs",
+      "bonne_reponse_3": false,
+      "réponse_4": "Simplifier la documentation des projets",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 4,
+      "intitule": "Quelle pratique est couramment utilisée en DevOps pour intégrer des changements de code fréquemment ?",
+      "réponse_1": "Intégration continue (CI)",
+      "bonne_reponse_1": true,
+      "réponse_2": "Tests manuels",
+      "bonne_reponse_2": false,
+      "réponse_3": "Gestion des tickets",
+      "bonne_reponse_3": false,
+      "réponse_4": "Surveillance des serveurs",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 4,
+      "intitule": "Quel outil est principalement utilisé pour l'automatisation des pipelines CI/CD ?",
+      "réponse_1": "Jenkins",
+      "bonne_reponse_1": true,
+      "réponse_2": "Docker",
+      "bonne_reponse_2": false,
+      "réponse_3": "Kubernetes",
+      "bonne_reponse_3": false,
+      "réponse_4": "Prometheus",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 4,
+      "intitule": "Qu'est-ce que l'infrastructure as code (IaC) permet ?",
+      "réponse_1": "D'automatiser la gestion et le provisionnement de l'infrastructure",
+      "bonne_reponse_1": true,
+      "réponse_2": "D'écrire du code pour tester les applications",
+      "bonne_reponse_2": false,
+      "réponse_3": "D'améliorer la conception UX/UI",
+      "bonne_reponse_3": false,
+      "réponse_4": "De déployer des logiciels manuellement",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 4,
+      "intitule": "Quel outil est utilisé pour la conteneurisation ?",
+      "réponse_1": "Docker",
+      "bonne_reponse_1": true,
+      "réponse_2": "Terraform",
+      "bonne_reponse_2": false,
+      "réponse_3": "Ansible",
+      "bonne_reponse_3": false,
+      "réponse_4": "Nagios",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 4,
+      "intitule": "Quel outil permet l'orchestration de conteneurs ?",
+      "réponse_1": "Kubernetes",
+      "bonne_reponse_1": true,
+      "réponse_2": "Git",
+      "bonne_reponse_2": false,
+      "réponse_3": "JIRA",
+      "bonne_reponse_3": false,
+      "réponse_4": "Grafana",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 4,
+      "intitule": "Quelle est la principale fonction d'Ansible ?",
+      "réponse_1": "L'automatisation des configurations",
+      "bonne_reponse_1": true,
+      "réponse_2": "La surveillance des performances",
+      "bonne_reponse_2": false,
+      "réponse_3": "Le déploiement manuel",
+      "bonne_reponse_3": false,
+      "réponse_4": "L'analyse des logs",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 4,
+      "intitule": "Quel outil DevOps est principalement utilisé pour la gestion de versions ?",
+      "réponse_1": "Git",
+      "bonne_reponse_1": true,
+      "réponse_2": "Nexus",
+      "bonne_reponse_2": false,
+      "réponse_3": "Docker",
+      "bonne_reponse_3": false,
+      "réponse_4": "Prometheus",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 4,
+      "intitule": "Quelle pratique permet d'automatiser les déploiements en production ?",
+      "réponse_1": "Déploiement continu (CD)",
+      "bonne_reponse_1": true,
+      "réponse_2": "Planification agile",
+      "bonne_reponse_2": false,
+      "réponse_3": "Révision de code",
+      "bonne_reponse_3": false,
+      "réponse_4": "Monitoring",
+      "bonne_reponse_4": false
+    },
+    {
+      "theme": 4,
+      "intitule": "Quel est le rôle principal de Prometheus dans une infrastructure DevOps ?",
+      "réponse_1": "Surveillance et collecte des métriques",
+      "bonne_reponse_1": true,
+      "réponse_2": "Automatisation des tests",
+      "bonne_reponse_2": false,
+      "réponse_3": "Provisionnement des machines",
+      "bonne_reponse_3": false,
+      "réponse_4": "Gestion de versions",
+      "bonne_reponse_4": false
+    }
+  ]
+  

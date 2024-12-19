@@ -1,0 +1,1850 @@
+[
+    {
+        "text": "Que veut dire SQL ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "Simple Langage Query",
+                "is_correct": false
+            },
+            {
+                "text": "Super Langage Query",
+                "is_correct": false
+            },
+            {
+                "text": "Structured Langage Query",
+                "is_correct": true
+            },
+            {
+                "text": "Sandwich Langage Query",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande SQL est utilis\u00e9e pour ins\u00e9rer des donn\u00e9es dans une table ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "INSERT INTO",
+                "is_correct": true
+            },
+            {
+                "text": "ADD INTO",
+                "is_correct": false
+            },
+            {
+                "text": "UPDATE TABLE",
+                "is_correct": false
+            },
+            {
+                "text": "CREATE ROW",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande permet de modifier une colonne existante dans une table ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "ALTER TABLE",
+                "is_correct": true
+            },
+            {
+                "text": "MODIFY TABLE",
+                "is_correct": false
+            },
+            {
+                "text": "CHANGE COLUMN",
+                "is_correct": false
+            },
+            {
+                "text": "UPDATE COLUMN",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle clause SQL est utilis\u00e9e pour combiner les r\u00e9sultats de deux requ\u00eates sans doublons ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "INTERSECT",
+                "is_correct": false
+            },
+            {
+                "text": "JOIN",
+                "is_correct": false
+            },
+            {
+                "text": "UNION",
+                "is_correct": true
+            },
+            {
+                "text": "MERGE",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle fonction SQL permet de compter le nombre de lignes dans une table ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "SUM()",
+                "is_correct": false
+            },
+            {
+                "text": "COUNT()",
+                "is_correct": true
+            },
+            {
+                "text": "AVG()",
+                "is_correct": false
+            },
+            {
+                "text": "LENGTH()",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle clause SQL est utilis\u00e9e pour regrouper les lignes ayant des valeurs identiques dans une colonne ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "GROUP BY",
+                "is_correct": true
+            },
+            {
+                "text": "ORDER BY",
+                "is_correct": false
+            },
+            {
+                "text": "WHERE",
+                "is_correct": false
+            },
+            {
+                "text": "HAVING",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande SQL permet de supprimer une ligne dans une table ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "DELETE",
+                "is_correct": true
+            },
+            {
+                "text": "DROP",
+                "is_correct": false
+            },
+            {
+                "text": "REMOVE",
+                "is_correct": false
+            },
+            {
+                "text": "ERASE",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle clause est utilis\u00e9e pour sp\u00e9cifier une condition dans une requ\u00eate SELECT ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "WHERE",
+                "is_correct": true
+            },
+            {
+                "text": "HAVING",
+                "is_correct": false
+            },
+            {
+                "text": "GROUP BY",
+                "is_correct": false
+            },
+            {
+                "text": "FILTER",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle fonction SQL retourne la valeur maximale d'une colonne ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "MAX()",
+                "is_correct": true
+            },
+            {
+                "text": "MIN()",
+                "is_correct": false
+            },
+            {
+                "text": "TOP()",
+                "is_correct": false
+            },
+            {
+                "text": "HIGH()",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande SQL permet de renommer une table existante ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "RENAME TABLE",
+                "is_correct": true
+            },
+            {
+                "text": "ALTER NAME",
+                "is_correct": false
+            },
+            {
+                "text": "CHANGE NAME",
+                "is_correct": false
+            },
+            {
+                "text": "MODIFY TABLE",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel type de jointure retourne uniquement les lignes correspondantes des deux tables ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "INNER JOIN",
+                "is_correct": true
+            },
+            {
+                "text": "FULL JOIN",
+                "is_correct": false
+            },
+            {
+                "text": "LEFT JOIN",
+                "is_correct": false
+            },
+            {
+                "text": "OUTER JOIN",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle fonction SQL permet de calculer la moyenne d'une colonne ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "AVG()",
+                "is_correct": true
+            },
+            {
+                "text": "MEAN()",
+                "is_correct": false
+            },
+            {
+                "text": "SUM()",
+                "is_correct": false
+            },
+            {
+                "text": "MEDIAN()",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande est utilis\u00e9e pour ajouter une nouvelle colonne dans une table SQL ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "ALTER TABLE ... ADD",
+                "is_correct": true
+            },
+            {
+                "text": "INSERT COLUMN",
+                "is_correct": false
+            },
+            {
+                "text": "UPDATE TABLE",
+                "is_correct": false
+            },
+            {
+                "text": "NEW COLUMN",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle contrainte SQL est utilis\u00e9e pour d\u00e9finir une cl\u00e9 \u00e9trang\u00e8re ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "FOREIGN KEY",
+                "is_correct": true
+            },
+            {
+                "text": "PRIMARY KEY",
+                "is_correct": false
+            },
+            {
+                "text": "UNIQUE",
+                "is_correct": false
+            },
+            {
+                "text": "INDEX",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle clause SQL est utilis\u00e9e pour regrouper les r\u00e9sultats d'une requ\u00eate SELECT ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "GROUP BY",
+                "is_correct": true
+            },
+            {
+                "text": "ORDER BY",
+                "is_correct": false
+            },
+            {
+                "text": "WHERE",
+                "is_correct": false
+            },
+            {
+                "text": "HAVING",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel type de donn\u00e9es est utilis\u00e9 pour stocker des valeurs de type texte dans SQL ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "VARCHAR",
+                "is_correct": true
+            },
+            {
+                "text": "INT",
+                "is_correct": false
+            },
+            {
+                "text": "FLOAT",
+                "is_correct": false
+            },
+            {
+                "text": "BOOLEAN",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande SQL est utilis\u00e9e pour mettre \u00e0 jour des donn\u00e9es existantes dans une table ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "UPDATE",
+                "is_correct": true
+            },
+            {
+                "text": "MODIFY",
+                "is_correct": false
+            },
+            {
+                "text": "ALTER",
+                "is_correct": false
+            },
+            {
+                "text": "REPLACE",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel mot-cl\u00e9 est utilis\u00e9 pour trier les donn\u00e9es par ordre croissant dans une requ\u00eate SQL ?",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "ASC",
+                "is_correct": true
+            },
+            {
+                "text": "ORDER",
+                "is_correct": false
+            },
+            {
+                "text": "SORT",
+                "is_correct": false
+            },
+            {
+                "text": "INCR",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Question de test (la bonne r\u00e9ponse est 1)",
+        "theme_id": 0,
+        "answers": [
+            {
+                "text": "1",
+                "is_correct": true
+            },
+            {
+                "text": "2",
+                "is_correct": false
+            },
+            {
+                "text": "3",
+                "is_correct": false
+            },
+            {
+                "text": "4",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle est la fonction principale pour afficher du texte en Python?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "print()",
+                "is_correct": true
+            },
+            {
+                "text": "echo()",
+                "is_correct": false
+            },
+            {
+                "text": "display()",
+                "is_correct": false
+            },
+            {
+                "text": "show()",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle extension est utilis\u00e9e pour un fichier Python?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": ".txt",
+                "is_correct": false
+            },
+            {
+                "text": ".py",
+                "is_correct": true
+            },
+            {
+                "text": ".java",
+                "is_correct": false
+            },
+            {
+                "text": ".html",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Comment d\u00e9finir une fonction en Python?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "function ma_fonction():",
+                "is_correct": false
+            },
+            {
+                "text": "def ma_fonction():",
+                "is_correct": true
+            },
+            {
+                "text": "define ma_fonction():",
+                "is_correct": false
+            },
+            {
+                "text": "func ma_fonction():",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel mot-cl\u00e9 est utilis\u00e9 pour cr\u00e9er une boucle en Python?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "for",
+                "is_correct": true
+            },
+            {
+                "text": "repeat",
+                "is_correct": false
+            },
+            {
+                "text": "while",
+                "is_correct": true
+            },
+            {
+                "text": "loop",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle fonction permet d'obtenir la longueur d'une liste?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "size()",
+                "is_correct": false
+            },
+            {
+                "text": "len()",
+                "is_correct": true
+            },
+            {
+                "text": "count()",
+                "is_correct": false
+            },
+            {
+                "text": "length()",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Comment ajouter un \u00e9l\u00e9ment \u00e0 la fin d'une liste?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "append()",
+                "is_correct": true
+            },
+            {
+                "text": "add()",
+                "is_correct": false
+            },
+            {
+                "text": "push()",
+                "is_correct": false
+            },
+            {
+                "text": "insert()",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle est la sortie de 3 * 2 ** 2 en Python?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "12",
+                "is_correct": true
+            },
+            {
+                "text": "18",
+                "is_correct": false
+            },
+            {
+                "text": "9",
+                "is_correct": false
+            },
+            {
+                "text": "6",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Comment commenter une ligne en Python?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "// Commentaire",
+                "is_correct": false
+            },
+            {
+                "text": "# Commentaire",
+                "is_correct": true
+            },
+            {
+                "text": "-- Commentaire",
+                "is_correct": false
+            },
+            {
+                "text": "/* Commentaire */",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel type de variable est renvoy\u00e9 par input()?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "int",
+                "is_correct": false
+            },
+            {
+                "text": "float",
+                "is_correct": false
+            },
+            {
+                "text": "str",
+                "is_correct": true
+            },
+            {
+                "text": "bool",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle m\u00e9thode permet de convertir une cha\u00eene en majuscules?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "upper()",
+                "is_correct": true
+            },
+            {
+                "text": "capitalize()",
+                "is_correct": false
+            },
+            {
+                "text": "toupper()",
+                "is_correct": false
+            },
+            {
+                "text": "uppercase()",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel op\u00e9rateur est utilis\u00e9 pour la division enti\u00e8re?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "/",
+                "is_correct": false
+            },
+            {
+                "text": "//",
+                "is_correct": true
+            },
+            {
+                "text": "%",
+                "is_correct": false
+            },
+            {
+                "text": "**",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Comment supprimer une cl\u00e9 d'un dictionnaire?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "del",
+                "is_correct": true
+            },
+            {
+                "text": "remove()",
+                "is_correct": false
+            },
+            {
+                "text": "pop()",
+                "is_correct": true
+            },
+            {
+                "text": "delete()",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel type de boucle ex\u00e9cute tant qu'une condition est vraie?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "for",
+                "is_correct": false
+            },
+            {
+                "text": "while",
+                "is_correct": true
+            },
+            {
+                "text": "until",
+                "is_correct": false
+            },
+            {
+                "text": "loop",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle fonction permet de trier une liste?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "sort()",
+                "is_correct": true
+            },
+            {
+                "text": "sorted()",
+                "is_correct": true
+            },
+            {
+                "text": "order()",
+                "is_correct": false
+            },
+            {
+                "text": "arrange()",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle est la valeur de 5 % 2?",
+        "theme_id": 1,
+        "answers": [
+            {
+                "text": "2",
+                "is_correct": false
+            },
+            {
+                "text": "3",
+                "is_correct": false
+            },
+            {
+                "text": "1",
+                "is_correct": true
+            },
+            {
+                "text": "0",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande permet de lister les fichiers dans un dossier Unix ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "ls",
+                "is_correct": true
+            },
+            {
+                "text": "cd",
+                "is_correct": false
+            },
+            {
+                "text": "pwd",
+                "is_correct": false
+            },
+            {
+                "text": "mkdir",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande permet de cr\u00e9er un r\u00e9pertoire ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "mkdir",
+                "is_correct": true
+            },
+            {
+                "text": "rmdir",
+                "is_correct": false
+            },
+            {
+                "text": "touch",
+                "is_correct": false
+            },
+            {
+                "text": "cp",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Comment afficher le chemin absolu du r\u00e9pertoire courant ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "pwd",
+                "is_correct": true
+            },
+            {
+                "text": "ls",
+                "is_correct": false
+            },
+            {
+                "text": "cd",
+                "is_correct": false
+            },
+            {
+                "text": "echo",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande permet de supprimer un fichier ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "rm",
+                "is_correct": true
+            },
+            {
+                "text": "rmdir",
+                "is_correct": false
+            },
+            {
+                "text": "mv",
+                "is_correct": false
+            },
+            {
+                "text": "cp",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande permet de changer de r\u00e9pertoire ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "cd",
+                "is_correct": true
+            },
+            {
+                "text": "ls",
+                "is_correct": false
+            },
+            {
+                "text": "mkdir",
+                "is_correct": false
+            },
+            {
+                "text": "rm",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande permet de copier un fichier ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "cp",
+                "is_correct": true
+            },
+            {
+                "text": "mv",
+                "is_correct": false
+            },
+            {
+                "text": "rm",
+                "is_correct": false
+            },
+            {
+                "text": "touch",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande permet de renommer un fichier ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "mv",
+                "is_correct": true
+            },
+            {
+                "text": "cp",
+                "is_correct": false
+            },
+            {
+                "text": "rename",
+                "is_correct": false
+            },
+            {
+                "text": "rm",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande affiche les premi\u00e8res lignes d'un fichier ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "head",
+                "is_correct": true
+            },
+            {
+                "text": "tail",
+                "is_correct": false
+            },
+            {
+                "text": "cat",
+                "is_correct": false
+            },
+            {
+                "text": "grep",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande permet d'afficher le contenu d'un fichier ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "cat",
+                "is_correct": true
+            },
+            {
+                "text": "head",
+                "is_correct": false
+            },
+            {
+                "text": "tail",
+                "is_correct": false
+            },
+            {
+                "text": "cp",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Comment lister les fichiers avec des d\u00e9tails comme la taille et la date ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "ls -l",
+                "is_correct": true
+            },
+            {
+                "text": "ls -a",
+                "is_correct": false
+            },
+            {
+                "text": "ls",
+                "is_correct": false
+            },
+            {
+                "text": "pwd",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande permet de chercher un motif dans un fichier ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "grep",
+                "is_correct": true
+            },
+            {
+                "text": "find",
+                "is_correct": false
+            },
+            {
+                "text": "sed",
+                "is_correct": false
+            },
+            {
+                "text": "awk",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Comment cr\u00e9er un fichier vide ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "touch",
+                "is_correct": true
+            },
+            {
+                "text": "mkdir",
+                "is_correct": false
+            },
+            {
+                "text": "rm",
+                "is_correct": false
+            },
+            {
+                "text": "echo",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande affiche la fin d'un fichier ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "tail",
+                "is_correct": true
+            },
+            {
+                "text": "head",
+                "is_correct": false
+            },
+            {
+                "text": "cat",
+                "is_correct": false
+            },
+            {
+                "text": "less",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle commande permet de trouver des fichiers dans un r\u00e9pertoire ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "find",
+                "is_correct": true
+            },
+            {
+                "text": "grep",
+                "is_correct": false
+            },
+            {
+                "text": "ls",
+                "is_correct": false
+            },
+            {
+                "text": "pwd",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Comment voir l'historique des commandes utilis\u00e9es ?",
+        "theme_id": 2,
+        "answers": [
+            {
+                "text": "history",
+                "is_correct": true
+            },
+            {
+                "text": "echo",
+                "is_correct": false
+            },
+            {
+                "text": "grep",
+                "is_correct": false
+            },
+            {
+                "text": "ps",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle entreprise a lanc\u00e9 le mod\u00e8le GPT-4 en 2023 ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "OpenAI",
+                "is_correct": true
+            },
+            {
+                "text": "Google",
+                "is_correct": false
+            },
+            {
+                "text": "Meta",
+                "is_correct": false
+            },
+            {
+                "text": "Amazon",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel outil d'IA a \u00e9t\u00e9 interdit dans plusieurs \u00e9coles en raison de craintes de tricherie ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "Bard",
+                "is_correct": false
+            },
+            {
+                "text": "ChatGPT",
+                "is_correct": true
+            },
+            {
+                "text": "Claude",
+                "is_correct": false
+            },
+            {
+                "text": "Copilot",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle entreprise a introduit le mod\u00e8le LLaMA pour la recherche en IA ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "Meta",
+                "is_correct": true
+            },
+            {
+                "text": "Microsoft",
+                "is_correct": false
+            },
+            {
+                "text": "Anthropic",
+                "is_correct": false
+            },
+            {
+                "text": "Apple",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle fonction principale propose l'outil MidJourney ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "Cr\u00e9ation de texte",
+                "is_correct": false
+            },
+            {
+                "text": "Analyse de donn\u00e9es",
+                "is_correct": false
+            },
+            {
+                "text": "G\u00e9n\u00e9ration d'images",
+                "is_correct": true
+            },
+            {
+                "text": "Traduction automatique",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle IA a \u00e9t\u00e9 d\u00e9velopp\u00e9e pour concurrencer ChatGPT par Google ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "Gemini",
+                "is_correct": true
+            },
+            {
+                "text": "Claude",
+                "is_correct": false
+            },
+            {
+                "text": "LLaMA",
+                "is_correct": false
+            },
+            {
+                "text": "Watson",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel pays a propos\u00e9 un r\u00e8glement pour encadrer l'utilisation de l'IA en Europe ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "France",
+                "is_correct": false
+            },
+            {
+                "text": "Royaume-Uni",
+                "is_correct": false
+            },
+            {
+                "text": "Union Europ\u00e9enne",
+                "is_correct": true
+            },
+            {
+                "text": "Allemagne",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel type d'IA est utilis\u00e9 dans les voitures autonomes ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "IA g\u00e9n\u00e9rative",
+                "is_correct": false
+            },
+            {
+                "text": "IA symbolique",
+                "is_correct": false
+            },
+            {
+                "text": "IA embarqu\u00e9e",
+                "is_correct": true
+            },
+            {
+                "text": "IA musicale",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel mod\u00e8le de langage a atteint un milliard d'utilisateurs en 2023 ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "Claude",
+                "is_correct": false
+            },
+            {
+                "text": "ChatGPT",
+                "is_correct": true
+            },
+            {
+                "text": "Bard",
+                "is_correct": false
+            },
+            {
+                "text": "Watson",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel acteur majeur a achet\u00e9 DeepMind en 2014 ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "Google",
+                "is_correct": true
+            },
+            {
+                "text": "Microsoft",
+                "is_correct": false
+            },
+            {
+                "text": "Meta",
+                "is_correct": false
+            },
+            {
+                "text": "Apple",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle IA est con\u00e7ue sp\u00e9cialement pour la s\u00e9curit\u00e9 et la surveillance ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "Palantir",
+                "is_correct": true
+            },
+            {
+                "text": "MidJourney",
+                "is_correct": false
+            },
+            {
+                "text": "DALL-E",
+                "is_correct": false
+            },
+            {
+                "text": "Claude",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle IA peut g\u00e9n\u00e9rer du code informatique sur demande ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "ChatGPT",
+                "is_correct": false
+            },
+            {
+                "text": "GitHub Copilot",
+                "is_correct": true
+            },
+            {
+                "text": "DALL-E",
+                "is_correct": false
+            },
+            {
+                "text": "Watson",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle technologie est utilis\u00e9e pour l'entra\u00eenement des IA g\u00e9n\u00e9ratives ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "Machine Learning",
+                "is_correct": true
+            },
+            {
+                "text": "Algorithmes de tri",
+                "is_correct": false
+            },
+            {
+                "text": "Blockchain",
+                "is_correct": false
+            },
+            {
+                "text": "Compression de donn\u00e9es",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel secteur b\u00e9n\u00e9ficie fortement des IA comme Stable Diffusion ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "Industrie textile",
+                "is_correct": false
+            },
+            {
+                "text": "Sant\u00e9",
+                "is_correct": false
+            },
+            {
+                "text": "Cr\u00e9ation artistique",
+                "is_correct": true
+            },
+            {
+                "text": "Transport",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel outil IA peut produire des synth\u00e8ses vocales de haute qualit\u00e9 ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "DeepVoice",
+                "is_correct": true
+            },
+            {
+                "text": "MidJourney",
+                "is_correct": false
+            },
+            {
+                "text": "OpenGPT",
+                "is_correct": false
+            },
+            {
+                "text": "Bard",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel d\u00e9fi \u00e9thique majeur concerne l'usage des IA dans le domaine cr\u00e9atif ?",
+        "theme_id": 3,
+        "answers": [
+            {
+                "text": "Les droits d'auteur",
+                "is_correct": true
+            },
+            {
+                "text": "La stabilit\u00e9 des serveurs",
+                "is_correct": false
+            },
+            {
+                "text": "La r\u00e9gulation de l'air",
+                "is_correct": false
+            },
+            {
+                "text": "La portabilit\u00e9 des donn\u00e9es",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel est le principal objectif du DevOps ?",
+        "theme_id": 4,
+        "answers": [
+            {
+                "text": "Am\u00e9liorer la communication entre les \u00e9quipes de d\u00e9veloppement et d'op\u00e9rations",
+                "is_correct": true
+            },
+            {
+                "text": "R\u00e9duire les co\u00fbts de mat\u00e9riel informatique",
+                "is_correct": false
+            },
+            {
+                "text": "Augmenter le nombre de d\u00e9veloppeurs",
+                "is_correct": false
+            },
+            {
+                "text": "Simplifier la documentation des projets",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle pratique est couramment utilis\u00e9e en DevOps pour int\u00e9grer des changements de code fr\u00e9quemment ?",
+        "theme_id": 4,
+        "answers": [
+            {
+                "text": "Int\u00e9gration continue (CI)",
+                "is_correct": true
+            },
+            {
+                "text": "Tests manuels",
+                "is_correct": false
+            },
+            {
+                "text": "Gestion des tickets",
+                "is_correct": false
+            },
+            {
+                "text": "Surveillance des serveurs",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel outil est principalement utilis\u00e9 pour l'automatisation des pipelines CI/CD ?",
+        "theme_id": 4,
+        "answers": [
+            {
+                "text": "Jenkins",
+                "is_correct": true
+            },
+            {
+                "text": "Docker",
+                "is_correct": false
+            },
+            {
+                "text": "Kubernetes",
+                "is_correct": false
+            },
+            {
+                "text": "Prometheus",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Qu'est-ce que l'infrastructure as code (IaC) permet ?",
+        "theme_id": 4,
+        "answers": [
+            {
+                "text": "D'automatiser la gestion et le provisionnement de l'infrastructure",
+                "is_correct": true
+            },
+            {
+                "text": "D'\u00e9crire du code pour tester les applications",
+                "is_correct": false
+            },
+            {
+                "text": "D'am\u00e9liorer la conception UX/UI",
+                "is_correct": false
+            },
+            {
+                "text": "De d\u00e9ployer des logiciels manuellement",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel outil est utilis\u00e9 pour la conteneurisation ?",
+        "theme_id": 4,
+        "answers": [
+            {
+                "text": "Docker",
+                "is_correct": true
+            },
+            {
+                "text": "Terraform",
+                "is_correct": false
+            },
+            {
+                "text": "Ansible",
+                "is_correct": false
+            },
+            {
+                "text": "Nagios",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel outil permet l'orchestration de conteneurs ?",
+        "theme_id": 4,
+        "answers": [
+            {
+                "text": "Kubernetes",
+                "is_correct": true
+            },
+            {
+                "text": "Git",
+                "is_correct": false
+            },
+            {
+                "text": "JIRA",
+                "is_correct": false
+            },
+            {
+                "text": "Grafana",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle est la principale fonction d'Ansible ?",
+        "theme_id": 4,
+        "answers": [
+            {
+                "text": "L'automatisation des configurations",
+                "is_correct": true
+            },
+            {
+                "text": "La surveillance des performances",
+                "is_correct": false
+            },
+            {
+                "text": "Le d\u00e9ploiement manuel",
+                "is_correct": false
+            },
+            {
+                "text": "L'analyse des logs",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel outil DevOps est principalement utilis\u00e9 pour la gestion de versions ?",
+        "theme_id": 4,
+        "answers": [
+            {
+                "text": "Git",
+                "is_correct": true
+            },
+            {
+                "text": "Nexus",
+                "is_correct": false
+            },
+            {
+                "text": "Docker",
+                "is_correct": false
+            },
+            {
+                "text": "Prometheus",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quelle pratique permet d'automatiser les d\u00e9ploiements en production ?",
+        "theme_id": 4,
+        "answers": [
+            {
+                "text": "D\u00e9ploiement continu (CD)",
+                "is_correct": true
+            },
+            {
+                "text": "Planification agile",
+                "is_correct": false
+            },
+            {
+                "text": "R\u00e9vision de code",
+                "is_correct": false
+            },
+            {
+                "text": "Monitoring",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel est le r\u00f4le principal de Prometheus dans une infrastructure DevOps ?",
+        "theme_id": 4,
+        "answers": [
+            {
+                "text": "Surveillance et collecte des m\u00e9triques",
+                "is_correct": true
+            },
+            {
+                "text": "Automatisation des tests",
+                "is_correct": false
+            },
+            {
+                "text": "Provisionnement des machines",
+                "is_correct": false
+            },
+            {
+                "text": "Gestion de versions",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Qui fut le d\u00e9l\u00e9gu\u00e9 l\u00e9gendaire de la Tech IA ?",
+        "theme_id": 5,
+        "answers": [
+            {
+                "text": "Le H",
+                "is_correct": false
+            },
+            {
+                "text": "Hac\u00e8ne",
+                "is_correct": true
+            },
+            {
+                "text": "Jason",
+                "is_correct": false
+            },
+            {
+                "text": "Le J",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel projet a fait couler le plus de sang et de sueur ?",
+        "theme_id": 5,
+        "answers": [
+            {
+                "text": "Wator",
+                "is_correct": true
+            },
+            {
+                "text": "Cr\u00e9ation de Quizz",
+                "is_correct": false
+            },
+            {
+                "text": "La Poigne d'Acier",
+                "is_correct": false
+            },
+            {
+                "text": "La calculatrice",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Qui s'est fait chourer son v\u00e9lo \u00e9lectrique ?",
+        "theme_id": 5,
+        "answers": [
+            {
+                "text": "Ludivine",
+                "is_correct": true
+            },
+            {
+                "text": "David",
+                "is_correct": false
+            },
+            {
+                "text": "Sami",
+                "is_correct": false
+            },
+            {
+                "text": "Gauthier",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "De quel substance se nourrit exclusivement Benjamin ?",
+        "theme_id": 5,
+        "answers": [
+            {
+                "text": "Salade verte (sauce ranch)",
+                "is_correct": false
+            },
+            {
+                "text": "Kebab 3 viandes suppl\u00e9ment mayo",
+                "is_correct": true
+            },
+            {
+                "text": "Tofu grill\u00e9",
+                "is_correct": false
+            },
+            {
+                "text": "Shaker de Wei",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel \u00e9tait le code du sas d'entr\u00e9e \u00e0 la date de fin de la formation ?",
+        "theme_id": 5,
+        "answers": [
+            {
+                "text": "5902#",
+                "is_correct": false
+            },
+            {
+                "text": "9908#",
+                "is_correct": false
+            },
+            {
+                "text": "9707#",
+                "is_correct": true
+            },
+            {
+                "text": "9202#",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Qui est le meilleur joueur de fl\u00e9chettes ?",
+        "theme_id": 5,
+        "answers": [
+            {
+                "text": "Hac\u00e8ne",
+                "is_correct": true
+            },
+            {
+                "text": "Malek",
+                "is_correct": true
+            },
+            {
+                "text": "David",
+                "is_correct": true
+            },
+            {
+                "text": "Raouf",
+                "is_correct": true
+            }
+        ]
+    },
+    {
+        "text": "Qui a pulv\u00e9ris\u00e9 le record du monde du Amiens-Lille en v\u00e9lo ?",
+        "theme_id": 5,
+        "answers": [
+            {
+                "text": "Maxime",
+                "is_correct": true
+            },
+            {
+                "text": "Antoine",
+                "is_correct": false
+            },
+            {
+                "text": "Nicolas C",
+                "is_correct": false
+            },
+            {
+                "text": "Michael",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Qui utilise beaucoup trop l'expression \"\u00e0 la zob\" ?",
+        "theme_id": 5,
+        "answers": [
+            {
+                "text": "Ludivine",
+                "is_correct": true
+            },
+            {
+                "text": "Maxime",
+                "is_correct": false
+            },
+            {
+                "text": "Samuel",
+                "is_correct": false
+            },
+            {
+                "text": "Benjamin",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Quel \u00e9tait le nom de la salle de la formation ?",
+        "theme_id": 5,
+        "answers": [
+            {
+                "text": "Marie Curie",
+                "is_correct": false
+            },
+            {
+                "text": "Lord Byron",
+                "is_correct": false
+            },
+            {
+                "text": "Ada Lovelace",
+                "is_correct": true
+            },
+            {
+                "text": "Mary Shelley",
+                "is_correct": false
+            }
+        ]
+    },
+    {
+        "text": "Qui est pass\u00e9 en premier sur la veille m\u00e9tier ?",
+        "theme_id": 5,
+        "answers": [
+            {
+                "text": "Sami",
+                "is_correct": false
+            },
+            {
+                "text": "Gauthier",
+                "is_correct": false
+            },
+            {
+                "text": "Samuel",
+                "is_correct": false
+            },
+            {
+                "text": "Malek",
+                "is_correct": true
+            }
+        ]
+    }
+]
