@@ -53,7 +53,6 @@ def streamlit_found_diag_position(player : Player, outter_positions: list[Positi
     return Position object
     """
     if player.position_id < 42:
-        print("ligne 48 : ", player.position_id)
         return outter_positions[player.position_id]
     print("ligne 50 : ", player.position_id)
     for item in center_positions[:-1]:
