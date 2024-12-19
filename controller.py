@@ -24,7 +24,6 @@ def good_answer(player, iscamembert, id_theme):
         
     # Check si le player a tout les camemberts
     if player.is_final_step():
-        print('YOUHOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU')
         if player.position_id == 99: # si le joueur est au centre
             print(f"{player.name} a tous les camemberts ! Il est maintenant dans la dernière ligne droite.")
             # Envoie le player à la dernière ligne droite du jeu
@@ -48,7 +47,8 @@ def found_diag_position(player : Player):
     if player.position_id < 42:
         print("ligne 48 : ", player.position_id)
         return list_positions[player.position_id]
-    print("ligne 50 : ", player.position_id)
+    elif player.position_id == 99:
+        return list_diag_positions[-1]
     for item in list_diag_positions[:-1]:
         for position in item:
             if player.position_id == position:
@@ -86,6 +86,8 @@ def ask_questions(player):
     print(player.position_id)
     print(player.is_final_step())
     if player.is_final_step():
+        if player.position_id == 99:
+            return last_step(player)
         position = found_diag_position(player)
         id_theme = position.theme
         is_camembert = False
@@ -155,19 +157,17 @@ def last_step(player):
 
     for item in themes:
         theme_name = item
+        print(f"Il reste {remaining_question} questions.")
         remaining_question = remaining_question -1
         theme_id = Themes[theme_name].value # obtenir l'id depuis l'enum
         question_choisie = random.choice(user.get_question_list(theme_id))
 
         print(f"question du theme {theme_name}:")
-        print(question_choisie.text)
-
-
 
 
         reponse = question_resolution(question_choisie)
         if reponse.is_correct:
-            print(f"Réponse correcte! Il reste {remaining_question -1} questions.")
+            print("Réponse correcte!")
         else:
             print("Mauvaise réponse! Le player passe au tour suivant.")
             return wrong_answer(player)
