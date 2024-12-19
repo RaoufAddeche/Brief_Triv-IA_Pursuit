@@ -22,10 +22,6 @@ class QuestionData() :
             answers = question["answers"]
             for answer in answers :
                 user.create_answer(question_id, answer["text"], bool(answer["is_correct"]))
-            
-
-
-        
 
     def question_export(self, filename : str) :
         user = DatabaseUtils()
