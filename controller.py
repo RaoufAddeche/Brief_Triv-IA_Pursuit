@@ -198,4 +198,3 @@ def last_step(player):
         return True
 
 last_step(liste_player[0])
-
