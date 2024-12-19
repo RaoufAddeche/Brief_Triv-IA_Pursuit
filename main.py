@@ -12,7 +12,15 @@ from positions import create_all_position
 #Intialization and script resets
 #___________________________
 if "game_state" not in st.session_state:
+    #game_state = 0 : players choice
+    #game_state = 1 : game play
     st.session_state.game_state = 0    
+    #game_step = -1 : initialization
+    #game_step = 0 : before throw die or next playe
+    #game_step = 1 : choose direction
+    #game_step = 2 : show question
+    #game_step = 3 : correct answer
+    #game_step = 4 : bad arect answer   
     st.session_state.game_step = -1
     st.session_state.player_count = 1     
     st.session_state.current_player = 0 
